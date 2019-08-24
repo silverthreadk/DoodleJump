@@ -1,0 +1,19 @@
+#include "input_handler.h"
+#include "command.h"
+
+#include <SFML/Graphics.hpp>
+
+InputHandler::InputHandler() {
+    key_left_ = new LeftCommand();
+    key_right_ = new RightCommand();
+}
+
+InputHandler::~InputHandler() {
+
+}
+
+Command* InputHandler::handleInput() {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) return key_left_;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) return key_right_;
+    return nullptr;
+}
