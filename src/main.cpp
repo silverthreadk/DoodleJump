@@ -18,12 +18,14 @@ int main() {
     RenderWindow app(VideoMode(400, 533), "Doodle Game!");
     app.setFramerateLimit(60);
 
-    Texture t1,t2,t3;
+    Texture t1,t2,t3,t4;
     t1.loadFromFile(RESOURCE_PATH + "images/background.png");
     t2.loadFromFile(RESOURCE_PATH + "images/platform.png");
     t3.loadFromFile(RESOURCE_PATH + "images/doodle.png");
+    t4.loadFromFile(RESOURCE_PATH + "images/continue.png");
 
-    Sprite sBackground(t1), sPlat(t2), sPers(t3);
+    Sprite sBackground(t1), sPlat(t2), sPers(t3), sGameover(t4);
+    sGameover.setPosition(20, 230);
 
     Landscape landscape;
     for (int i = 0; i < 10; i++) {
@@ -36,6 +38,7 @@ int main() {
 
     InputHandler ih;
     Command* command;
+    bool game_over = false;
 
     while (app.isOpen()) {
         Event e;
@@ -45,11 +48,18 @@ int main() {
         }
 
         command = ih.handleInput();
-        if (command) command->execute(&x);
+        if (command) {
+            if(game_over) command->execute(&x, &y, &dy);
+            else command->execute(&x);
+        }
 
         dy += 0.2;
         y += dy;
-        if (y > 500)  dy = -10;
+        if (y > 500) {
+            game_over = true;
+        } else {
+            game_over = false;
+        }
 
         if (y < h) {
             y = h;
@@ -62,6 +72,7 @@ int main() {
         app.draw(sBackground);
         app.draw(sPers);
         landscape.onDraw(&app,&sPlat);
+        if(game_over) app.draw(sGameover);
 
         app.display();
     }

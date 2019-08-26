@@ -8,6 +8,7 @@ public:
     ~InputHandler();
     Command* handleInput();
 private:
+    Command* key_enter_;
     Command* key_left_;
     Command* key_right_;
 };
