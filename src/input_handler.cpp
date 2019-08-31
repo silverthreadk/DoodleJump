@@ -10,7 +10,6 @@ InputHandler::InputHandler() {
 }
 
 InputHandler::~InputHandler() {
-
 }
 
 Command* InputHandler::handleInput() {

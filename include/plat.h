@@ -2,8 +2,8 @@
 #define PLAT_H_
 
 namespace sf {
-    class RenderWindow;
-    class Sprite;
+class RenderWindow;
+class Sprite;
 }
 
 class Observer {
@@ -17,7 +17,7 @@ class Observer {
 class Plat : public Observer {
  public:
     Plat();
-    ~Plat() {};
+    ~Plat() {}
     virtual void update(int dy);
     virtual void calculate(int x, int y, float* dy);
     virtual void draw(sf::RenderWindow* app, sf::Sprite* sprite);

@@ -3,11 +3,11 @@
 
 class Command;
 class InputHandler {
-public:
+ public:
     InputHandler();
     ~InputHandler();
     Command* handleInput();
-private:
+ private:
     Command* key_enter_;
     Command* key_left_;
     Command* key_right_;

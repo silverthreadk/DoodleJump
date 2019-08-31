@@ -7,8 +7,8 @@
 class Observer;
 
 namespace sf {
-    class RenderWindow;
-    class Sprite;
+class RenderWindow;
+class Sprite;
 }
 
 class Subject {
