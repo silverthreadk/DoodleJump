@@ -9,6 +9,7 @@ class Sprite;
 class Observer {
  public:
     virtual ~Observer() {}
+    virtual void initialize() = 0;
     virtual void update(int dy) = 0;
     virtual void calculate(int x, int y, float* dy) = 0;
     virtual void draw(sf::RenderWindow* app, sf::Sprite* sprite) = 0;
@@ -18,6 +19,7 @@ class Plat : public Observer {
  public:
     Plat();
     ~Plat() {}
+    virtual void initialize();
     virtual void update(int dy);
     virtual void calculate(int x, int y, float* dy);
     virtual void draw(sf::RenderWindow* app, sf::Sprite* sprite);

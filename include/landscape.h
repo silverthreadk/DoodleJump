@@ -17,6 +17,7 @@ class Subject {
     void removeObserver(std::shared_ptr<Observer> observer);
 
  protected:
+    void initialize();
     void update(int dy);
     void calculate(int x, int y, float* dy);
     void draw(sf::RenderWindow* app, sf::Sprite* sprite);
@@ -27,6 +28,7 @@ class Subject {
 
 class Landscape : public Subject {
  public:
+    void onInitialize();
     void onUpdate(int dy);
     void onCalculate(int x, int y, float* dy);
     void onDraw(sf::RenderWindow* app, sf::Sprite* sprite);

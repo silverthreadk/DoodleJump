@@ -12,6 +12,12 @@ void Subject::removeObserver(std::shared_ptr<Observer> observer) {
     observers_.remove(observer);
 }
 
+void Subject::initialize() {
+    for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
+        (*observer)->initialize();
+    }
+}
+
 void Subject::update(int dy) {
     for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
         (*observer)->update(dy);
@@ -28,6 +34,10 @@ void Subject::draw(sf::RenderWindow* app, sf::Sprite* sprite) {
     for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
         (*observer)->draw(app, sprite);
     }
+}
+
+void Landscape::onInitialize() {
+    initialize();
 }
 
 void Landscape::onUpdate(int dy) {

@@ -46,6 +46,7 @@ int main() {
         if (command) {
             if (game_over) {
                 command->execute(&x, &y, &dy);
+                landscape.onInitialize();
             } else {
                 command->execute(&x);
             }

@@ -3,6 +3,10 @@
 #include <SFML/Graphics.hpp>
 
 Plat::Plat() {
+    initialize();
+}
+
+void Plat::initialize() {
     x = rand() % 400;
     y = rand() % 533;
 }
