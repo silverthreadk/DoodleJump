@@ -17,10 +17,19 @@ int main() {
     t1.loadFromFile(RESOURCE_PATH + "images/background.png");
     t2.loadFromFile(RESOURCE_PATH + "images/platform.png");
     t3.loadFromFile(RESOURCE_PATH + "images/doodle.png");
-    t4.loadFromFile(RESOURCE_PATH + "images/continue.png");
 
-    sf::Sprite sBackground(t1), sPlat(t2), sPers(t3), sGameover(t4);
-    sGameover.setPosition(20, 230);
+    sf::Font font;
+    font.loadFromFile(RESOURCE_PATH + "fonts/nanumgothic.ttf");
+
+    sf::Sprite sBackground(t1), sPlat(t2), sPers(t3);
+
+    sf::Text text;
+    text.setFont(font);
+    text.setCharacterSize(25);
+    text.setStyle(sf::Text::Bold);
+    text.setColor(sf::Color::Black);
+    text.setString("Press Enter to Continue");
+    text.setPosition(55, 230);
 
     Landscape landscape;
     for (int i = 0; i < 10; i++) {
@@ -71,7 +80,9 @@ int main() {
         app.draw(sBackground);
         app.draw(sPers);
         landscape.onDraw(&app, &sPlat);
-        if (game_over) app.draw(sGameover);
+        if (game_over) {
+            app.draw(text);
+        }
 
         app.display();
     }
