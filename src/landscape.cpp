@@ -18,9 +18,9 @@ void Subject::initialize() {
     }
 }
 
-void Subject::update(int dy) {
+void Subject::update(int dy, int* score) {
     for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
-        (*observer)->update(dy);
+        (*observer)->update(dy, score);
     }
 }
 
@@ -40,8 +40,8 @@ void Landscape::onInitialize() {
     initialize();
 }
 
-void Landscape::onUpdate(int dy) {
-    update(dy);
+void Landscape::onUpdate(int dy, int* score) {
+    update(dy, score);
 }
 
 void Landscape::onCalculate(int x, int y, float* dy) {

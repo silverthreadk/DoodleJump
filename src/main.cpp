@@ -1,4 +1,5 @@
 #include <time.h>
+#include <string>
 #include <SFML/Graphics.hpp>
 
 #include "config.h"
@@ -31,6 +32,14 @@ int main() {
     text.setString("Press Enter to Continue");
     text.setPosition(55, 230);
 
+    int score = 0;
+    sf::Text score_text;
+    score_text.setFont(font);
+    score_text.setCharacterSize(20);
+    score_text.setStyle(sf::Text::Bold);
+    score_text.setColor(sf::Color::Black);
+    score_text.setPosition(10, 10);
+
     Landscape landscape;
     for (int i = 0; i < 10; i++) {
         std::shared_ptr<Plat> plat = std::make_shared<Plat>();
@@ -61,6 +70,8 @@ int main() {
             }
         }
 
+        score_text.setString("score : " + std::to_string(score));
+
         dy += 0.2;
         y += dy;
         if (y > 500) {
@@ -71,7 +82,7 @@ int main() {
 
         if (y < h) {
             y = h;
-            landscape.onUpdate(dy);
+            landscape.onUpdate(dy, &score);
         }
         landscape.onCalculate(x, y, &dy);
 
@@ -79,6 +90,7 @@ int main() {
 
         app.draw(sBackground);
         app.draw(sPers);
+        app.draw(score_text);
         landscape.onDraw(&app, &sPlat);
         if (game_over) {
             app.draw(text);

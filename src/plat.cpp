@@ -11,9 +11,13 @@ void Plat::initialize() {
     y = rand() % 533;
 }
 
-void Plat::update(int dy) {
+void Plat::update(int dy, int* score) {
     y = y - dy;
-    if (y > 533) { y = -rand() % 250; x = rand() % 400; }
+    if (y > 533) { 
+        y = -rand() % 250;
+        x = rand() % 400;
+        *score += 10;
+    }
 }
 
 void Plat::calculate(int player_x, int player_y, float* dy) {
