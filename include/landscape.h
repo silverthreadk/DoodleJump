@@ -5,6 +5,7 @@
 #include <memory>
 
 class Observer;
+class Player;
 
 namespace sf {
 class RenderWindow;
@@ -18,8 +19,8 @@ class Subject {
 
  protected:
     void initialize();
-    void update(int dy, int* score);
-    void calculate(int x, int y, float* dy);
+    void update(Player* player);
+    void calculate(Player* player);
     void draw(sf::RenderWindow* app, sf::Sprite* sprite);
 
  private:
@@ -29,8 +30,8 @@ class Subject {
 class Landscape : public Subject {
  public:
     void onInitialize();
-    void onUpdate(int dy, int* score);
-    void onCalculate(int x, int y, float* dy);
+    void onUpdate(Player* player);
+    void onCalculate(Player* player);
     void onDraw(sf::RenderWindow* app, sf::Sprite* sprite);
 };
 #endif  // LANDSCAPE_H_

@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "plat.h"
+#include "player.h"
 
 void Subject::addObserver(std::shared_ptr<Observer> observer) {
     observers_.push_back(observer);
@@ -18,15 +19,15 @@ void Subject::initialize() {
     }
 }
 
-void Subject::update(int dy, int* score) {
+void Subject::update(Player* player) {
     for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
-        (*observer)->update(dy, score);
+        (*observer)->update(player);
     }
 }
 
-void Subject::calculate(int player_x, int player_y, float* dy) {
+void Subject::calculate(Player* player) {
     for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
-        (*observer)->calculate(player_x, player_y, dy);
+        (*observer)->calculate(player);
     }
 }
 
@@ -40,12 +41,12 @@ void Landscape::onInitialize() {
     initialize();
 }
 
-void Landscape::onUpdate(int dy, int* score) {
-    update(dy, score);
+void Landscape::onUpdate(Player* player) {
+    update(player);
 }
 
-void Landscape::onCalculate(int x, int y, float* dy) {
-    calculate(x, y, dy);
+void Landscape::onCalculate(Player* player) {
+    calculate(player);
 }
 
 void Landscape::onDraw(sf::RenderWindow* app, sf::Sprite* sprite) {

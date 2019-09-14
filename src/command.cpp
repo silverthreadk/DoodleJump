@@ -1,15 +1,15 @@
 #include "command.h"
 
-void StartCommand::execute(int* x, int* y, float* dy) {
-    *x = 100;
-    *y = 0;
-    *dy = 0;
+#include "player.h"
+
+void StartCommand::execute(Player* player) {
+    player->initialize();
 }
 
-void LeftCommand::execute(int* x) {
-    *x -= 3;
+void LeftCommand::execute(Player* player) {
+    player->moveToLeft();
 }
 
-void RightCommand::execute(int* x) {
-    *x += 3;
+void RightCommand::execute(Player* player) {
+    player->moveToRight();
 }

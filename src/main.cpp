@@ -7,11 +7,15 @@
 #include "command.h"
 #include "landscape.h"
 #include "plat.h"
+#include "player.h"
 
 int main() {
     srand(time(0));
 
-    sf::RenderWindow app(sf::VideoMode(400, 533), "Doodle Game!");
+    const int screen_width = 400;
+    const int screen_height = 533;
+
+    sf::RenderWindow app(sf::VideoMode(screen_width, screen_height), "Doodle Game!");
     app.setFramerateLimit(60);
 
     sf::Texture t1, t2, t3, t4;
@@ -32,7 +36,6 @@ int main() {
     text.setString("Press Enter to Continue");
     text.setPosition(55, 230);
 
-    int score = 0;
     sf::Text score_text;
     score_text.setFont(font);
     score_text.setCharacterSize(20);
@@ -46,8 +49,7 @@ int main() {
         landscape.addObserver(plat);
     }
 
-    int x = 100, y = 100, h = 200;
-    float dx = 0, dy = 0;
+    Player player;
 
     InputHandler ih;
     Command* command;
@@ -62,31 +64,22 @@ int main() {
 
         command = ih.handleInput();
         if (command) {
+            command->execute(&player);
             if (game_over) {
-                command->execute(&x, &y, &dy);
                 landscape.onInitialize();
-            } else {
-                command->execute(&x);
             }
         }
 
-        score_text.setString("score : " + std::to_string(score));
+        score_text.setString("score : " + std::to_string(player.getScore()));
 
-        dy += 0.2;
-        y += dy;
-        if (y > 500) {
-            game_over = true;
-        } else {
-            game_over = false;
+        game_over = player.update();
+
+        if (player.isHighestPoint()) {
+            landscape.onUpdate(&player);
         }
+        landscape.onCalculate(&player);
 
-        if (y < h) {
-            y = h;
-            landscape.onUpdate(dy, &score);
-        }
-        landscape.onCalculate(x, y, &dy);
-
-        sPers.setPosition(x, y);
+        sPers.setPosition(player.getX(), player.getY());
 
         app.draw(sBackground);
         app.draw(sPers);

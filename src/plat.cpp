@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "player.h"
+
 Plat::Plat() {
     initialize();
 }
@@ -11,18 +13,18 @@ void Plat::initialize() {
     y = rand() % 533;
 }
 
-void Plat::update(int dy, int* score) {
-    y = y - dy;
+void Plat::update(Player* player) {
+    y = y - player->getVelocity();
     if (y > 533) { 
         y = -rand() % 250;
         x = rand() % 400;
-        *score += 10;
+        player->addScore();
     }
 }
 
-void Plat::calculate(int player_x, int player_y, float* dy) {
-    if ((player_x + 50 > x) && (player_x + 20 < x + 68)
-        && (player_y + 70 > y) && (player_y + 70 < y + 14) && (*dy > 0)) *dy = -10;
+void Plat::calculate(Player* player) {
+    if ((player->getX() + 50 > x) && (player->getX() + 20 < x + 68)
+        && (player->getY() + 70 > y) && (player->getY() + 70 < y + 14) && (player->getVelocity() > 0)) player->jump();
 }
 
 void Plat::draw(sf::RenderWindow* app, sf::Sprite* sprite) {
