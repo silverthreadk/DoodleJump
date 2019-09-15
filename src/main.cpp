@@ -83,8 +83,8 @@ int main() {
 
         app.draw(sBackground);
         app.draw(sPers);
-        app.draw(score_text);
         landscape.onDraw(&app, &sPlat);
+        app.draw(score_text);
         if (game_over) {
             app.draw(text);
         }
