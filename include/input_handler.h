@@ -6,7 +6,7 @@ class InputHandler {
  public:
     InputHandler();
     ~InputHandler();
-    Command* handleInput();
+    Command* handleInput(bool game_over);
  private:
     Command* key_enter_;
     Command* key_left_;

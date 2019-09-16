@@ -62,7 +62,7 @@ int main() {
                 app.close();
         }
 
-        command = ih.handleInput();
+        command = ih.handleInput(game_over);
         if (command) {
             command->execute(&player);
             if (game_over) {
