@@ -10,7 +10,9 @@
 #include "plat.h"
 #include "player.h"
 
-Game::Game() : app(sf::VideoMode(400, 533), "Doodle Game!"),
+Game::Game() : screen_width_(400),
+    screen_height_(533),
+    app(sf::VideoMode(screen_width_, screen_height_), "Doodle Game!"),
     state_(PLAYING),
     landscape_(new Landscape()),
     player_(new Player()),
@@ -34,6 +36,10 @@ Game::Game() : app(sf::VideoMode(400, 533), "Doodle Game!"),
     game_over_text_.setColor(sf::Color::Black);
     game_over_text_.setString("Press Enter to Continue");
     game_over_text_.setPosition(55, 230);
+    sf::FloatRect text_rect = game_over_text_.getLocalBounds();
+    game_over_text_.setOrigin(text_rect.left + text_rect.width / 2.0f,
+        text_rect.top + text_rect.height / 2.0f);
+    game_over_text_.setPosition(sf::Vector2f(screen_width_ / 2.f, screen_height_ / 2.f));
 
     score_text.setFont(font_);
     score_text.setCharacterSize(20);

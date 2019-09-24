@@ -20,6 +20,9 @@ class Game {
  private:
     void draw();
 
+    const int screen_width_;
+    const int screen_height_;
+
     sf::RenderWindow app;
     sf::Texture background_texture_;
     sf::Texture platform_texture_; 
