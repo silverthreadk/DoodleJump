@@ -30,10 +30,14 @@ Game::Game() : screen_width_(400),
 
     app.setFramerateLimit(60);
 
-    game_over_text_.setFont(font_);
-    game_over_text_.setCharacterSize(25);
-    game_over_text_.setStyle(sf::Text::Bold);
-    game_over_text_.setColor(sf::Color::Black);
+    auto initialize_text = [this](int font_size, sf::Text* text) {
+        text->setFont(font_);
+        text->setCharacterSize(font_size);
+        text->setStyle(sf::Text::Bold);
+        text->setColor(sf::Color::Black);
+    };
+
+    initialize_text(25, &game_over_text_);
     game_over_text_.setString("Press Enter to Continue");
     game_over_text_.setPosition(55, 230);
     sf::FloatRect text_rect = game_over_text_.getLocalBounds();
@@ -41,11 +45,8 @@ Game::Game() : screen_width_(400),
         text_rect.top + text_rect.height / 2.0f);
     game_over_text_.setPosition(sf::Vector2f(screen_width_ / 2.f, screen_height_ / 2.f));
 
-    score_text.setFont(font_);
-    score_text.setCharacterSize(20);
-    score_text.setStyle(sf::Text::Bold);
-    score_text.setColor(sf::Color::Black);
-    score_text.setPosition(10, 10);
+    initialize_text(20, &score_text_);
+    score_text_.setPosition(10, 10);
 
     for (int i = 0; i < 10; i++) {
         std::shared_ptr<Plat> plat = std::make_shared<Plat>();
@@ -76,7 +77,7 @@ void Game::gameLoop() {
             }
         }
 
-        score_text.setString("score : " + std::to_string(player_->getScore()));
+        score_text_.setString("score : " + std::to_string(player_->getScore()));
 
         if (player_->update()) {
             state_ = GAME_OVER;
@@ -97,7 +98,7 @@ void Game::draw() {
     app.draw(background_sprite_);
     app.draw(doodle_sprite_);
     landscape_->onDraw(&app, &plat_sprite_);
-    app.draw(score_text);
+    app.draw(score_text_);
     if (state_ == GAME_OVER) {
         app.draw(game_over_text_);
     }

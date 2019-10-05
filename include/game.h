@@ -29,7 +29,7 @@ class Game {
     sf::Texture doodle_texture_;
     sf::Font font_;
     sf::Text game_over_text_;
-    sf::Text score_text;
+    sf::Text score_text_;
 
     sf::Sprite background_sprite_;
     sf::Sprite plat_sprite_;
