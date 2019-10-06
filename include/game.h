@@ -30,6 +30,7 @@ class Game {
     sf::Font font_;
     sf::Text game_over_text_;
     sf::Text score_text_;
+    sf::Text high_score_text_;
 
     sf::Sprite background_sprite_;
     sf::Sprite plat_sprite_;
@@ -39,6 +40,7 @@ class Game {
     Landscape* landscape_;
     Player* player_;
     InputHandler* input_handler_;
+    int high_score_;
 };
 
 #endif  // GAME_H_

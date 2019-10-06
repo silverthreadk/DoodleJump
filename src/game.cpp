@@ -16,7 +16,8 @@ Game::Game() : screen_width_(400),
     state_(PLAYING),
     landscape_(new Landscape()),
     player_(new Player()),
-    input_handler_(new InputHandler()) {
+    input_handler_(new InputHandler()),
+    high_score_(0) {
     srand(time(0));
 
     background_texture_.loadFromFile(RESOURCE_PATH + "images/background.png");
@@ -39,11 +40,15 @@ Game::Game() : screen_width_(400),
 
     initialize_text(25, &game_over_text_);
     game_over_text_.setString("Press Enter to Continue");
-    game_over_text_.setPosition(55, 230);
     sf::FloatRect text_rect = game_over_text_.getLocalBounds();
     game_over_text_.setOrigin(text_rect.left + text_rect.width / 2.0f,
         text_rect.top + text_rect.height / 2.0f);
-    game_over_text_.setPosition(sf::Vector2f(screen_width_ / 2.f, screen_height_ / 2.f));
+    game_over_text_.setPosition(sf::Vector2f(screen_width_ / 2.f, -text_rect.height + screen_height_ / 2.f));
+
+    initialize_text(20, &high_score_text_);
+    high_score_text_.setOrigin(text_rect.left + text_rect.width / 2.0f,
+        text_rect.top + text_rect.height / 2.0f);
+    high_score_text_.setPosition(screen_width_ / 2.f, text_rect.height + screen_height_ / 2.f );
 
     initialize_text(20, &score_text_);
     score_text_.setPosition(10, 10);
@@ -78,9 +83,11 @@ void Game::gameLoop() {
         }
 
         score_text_.setString("score : " + std::to_string(player_->getScore()));
+        high_score_text_.setString("high score : " + std::to_string(high_score_));
 
         if (player_->update()) {
             state_ = GAME_OVER;
+            high_score_ = std::max(high_score_, player_->getScore());
         }
 
         if (player_->isHighestPoint()) {
@@ -101,6 +108,7 @@ void Game::draw() {
     app.draw(score_text_);
     if (state_ == GAME_OVER) {
         app.draw(game_over_text_);
+        app.draw(high_score_text_);
     }
 
     app.display();
