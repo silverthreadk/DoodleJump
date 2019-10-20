@@ -1,11 +1,12 @@
-#ifndef PLAT_H_
-#define PLAT_H_
+#ifndef PLATFORM_H_
+#define PLATFORM_H_
 
 class Player;
 
 namespace sf {
 class RenderWindow;
 class Sprite;
+class Texture;
 }
 
 class Observer {
@@ -14,22 +15,23 @@ class Observer {
     virtual void initialize() = 0;
     virtual void update(Player* player) = 0;
     virtual void calculate(Player* player) = 0;
-    virtual void draw(sf::RenderWindow* app, sf::Sprite* sprite) = 0;
+    virtual void draw(sf::RenderWindow* app) = 0;
 };
 
-class Plat : public Observer {
+class Platform : public Observer {
  public:
-    Plat();
-    ~Plat() {}
+    Platform(sf::Texture* texture);
+    ~Platform();
     virtual void initialize();
     virtual void update(Player* player);
     virtual void calculate(Player* player);
-    virtual void draw(sf::RenderWindow* app, sf::Sprite* sprite);
+    virtual void draw(sf::RenderWindow* app);
 
     int getX() { return x; }
     int getY() { return y; }
 
  private:
+    sf::Sprite* sprite_;
     int x;
     int y;
 };

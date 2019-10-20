@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "plat.h"
+#include "platform.h"
 #include "player.h"
 
 void Subject::addObserver(std::shared_ptr<Observer> observer) {
@@ -31,9 +31,9 @@ void Subject::calculate(Player* player) {
     }
 }
 
-void Subject::draw(sf::RenderWindow* app, sf::Sprite* sprite) {
+void Subject::draw(sf::RenderWindow* app) {
     for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
-        (*observer)->draw(app, sprite);
+        (*observer)->draw(app);
     }
 }
 
@@ -49,6 +49,6 @@ void Landscape::onCalculate(Player* player) {
     calculate(player);
 }
 
-void Landscape::onDraw(sf::RenderWindow* app, sf::Sprite* sprite) {
-    draw(app, sprite);
+void Landscape::onDraw(sf::RenderWindow* app) {
+    draw(app);
 }

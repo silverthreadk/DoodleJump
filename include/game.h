@@ -33,7 +33,6 @@ class Game {
     sf::Text high_score_text_;
 
     sf::Sprite background_sprite_;
-    sf::Sprite plat_sprite_;
     sf::Sprite doodle_sprite_;
 
     GameState state_;

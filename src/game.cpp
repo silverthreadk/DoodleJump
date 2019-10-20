@@ -7,7 +7,7 @@
 #include "input_handler.h"
 #include "command.h"
 #include "landscape.h"
-#include "plat.h"
+#include "platform.h"
 #include "player.h"
 
 Game::Game() : screen_width_(400),
@@ -26,7 +26,6 @@ Game::Game() : screen_width_(400),
     font_.loadFromFile(RESOURCE_PATH + "fonts/nanumgothic.ttf");
 
     background_sprite_.setTexture(background_texture_);
-    plat_sprite_.setTexture(platform_texture_);
     doodle_sprite_.setTexture(doodle_texture_);
 
     app.setFramerateLimit(60);
@@ -54,7 +53,7 @@ Game::Game() : screen_width_(400),
     score_text_.setPosition(10, 10);
 
     for (int i = 0; i < 10; i++) {
-        std::shared_ptr<Plat> plat = std::make_shared<Plat>();
+        std::shared_ptr<Platform> plat = std::make_shared<Platform>(&platform_texture_);
         landscape_->addObserver(plat);
     }
 }
@@ -104,7 +103,7 @@ void Game::gameLoop() {
 void Game::draw() {
     app.draw(background_sprite_);
     app.draw(doodle_sprite_);
-    landscape_->onDraw(&app, &plat_sprite_);
+    landscape_->onDraw(&app);
     app.draw(score_text_);
     if (state_ == GAME_OVER) {
         app.draw(game_over_text_);
