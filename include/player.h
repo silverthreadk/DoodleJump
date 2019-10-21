@@ -1,9 +1,15 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
+namespace sf {
+    class RenderWindow;
+    class Texture;
+    class Sprite;
+}
+
 class Player {
  public:
-    Player();
+    Player(sf::Texture* texture);
     ~Player() {}
     void initialize();
     void moveToLeft();
@@ -12,6 +18,7 @@ class Player {
     void jump();
     bool isHighestPoint();
     void addScore();
+    void draw(sf::RenderWindow* app);
 
     int getX() { return x; }
     int getY() { return y; }
@@ -19,6 +26,7 @@ class Player {
     int getScore() { return score; }
 
  private:
+    sf::Sprite* sprite_;
     int x;
     int y;
     double dy;

@@ -15,7 +15,6 @@ Game::Game() : screen_width_(400),
     app(sf::VideoMode(screen_width_, screen_height_), "Doodle Game!"),
     state_(PLAYING),
     landscape_(new Landscape()),
-    player_(new Player()),
     input_handler_(new InputHandler()),
     high_score_(0) {
     srand(time(0));
@@ -51,6 +50,8 @@ Game::Game() : screen_width_(400),
 
     initialize_text(20, &score_text_);
     score_text_.setPosition(10, 10);
+
+    player_ = new Player(&doodle_texture_);
 
     for (int i = 0; i < 10; i++) {
         std::shared_ptr<Platform> plat = std::make_shared<Platform>(&platform_texture_);
@@ -94,15 +95,13 @@ void Game::gameLoop() {
         }
         landscape_->onCalculate(player_);
 
-        doodle_sprite_.setPosition(player_->getX(), player_->getY());
-
         draw();
     }
 }
 
 void Game::draw() {
     app.draw(background_sprite_);
-    app.draw(doodle_sprite_);
+    player_->draw(&app);
     landscape_->onDraw(&app);
     app.draw(score_text_);
     if (state_ == GAME_OVER) {
