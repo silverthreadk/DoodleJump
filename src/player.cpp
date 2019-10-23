@@ -2,8 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 
-Player::Player(sf::Texture* texture) : sprite_(new sf::Sprite(*texture)), jump_height(200) {
+Player::Player(sf::Texture* texture) : Entity(texture), jump_height(200) {
     initialize();
+}
+
+Player::~Player() {
 }
 
 void Player::initialize() {
@@ -42,9 +45,4 @@ bool Player::isHighestPoint() {
 
 void Player::addScore() {
     score += 10;
-}
-
-void Player::draw(sf::RenderWindow* app) {
-    sprite_->setPosition(x, y);
-    app->draw(*sprite_);
 }

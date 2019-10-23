@@ -4,12 +4,11 @@
 
 #include "player.h"
 
-Platform::Platform(sf::Texture* texture) : sprite_(new sf::Sprite(*texture)) {
+Platform::Platform(sf::Texture* texture) : Observer(texture) {
     initialize();
 }
 
 Platform::~Platform() {
-    delete sprite_;
 }
 
 void Platform::initialize() {
@@ -19,7 +18,7 @@ void Platform::initialize() {
 
 void Platform::update(Player* player) {
     y = y - player->getVelocity();
-    if (y > 533) { 
+    if (y > 533) {
         y = -rand() % 250;
         x = rand() % 400;
         player->addScore();
@@ -29,9 +28,4 @@ void Platform::update(Player* player) {
 void Platform::calculate(Player* player) {
     if ((player->getX() + 50 > x) && (player->getX() + 20 < x + 68)
         && (player->getY() + 70 > y) && (player->getY() + 70 < y + 14) && (player->getVelocity() > 0)) player->jump();
-}
-
-void Platform::draw(sf::RenderWindow* app) {
-    sprite_->setPosition(x, y);
-    app->draw(*sprite_);
 }
