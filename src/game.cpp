@@ -73,13 +73,8 @@ void Game::gameLoop() {
                 app.close();
         }
 
-        Command* command = input_handler_->handleInput(state_== GAME_OVER);
-        if (command) {
-            command->execute(player_);
-            if (state_ == GAME_OVER) {
-                state_ = PLAYING;
-                landscape_->onInitialize();
-            }
+        if (handleInput()) {
+            initialize();
         }
 
         score_text_.setString("score : " + std::to_string(player_->getScore()));
@@ -97,6 +92,21 @@ void Game::gameLoop() {
 
         draw();
     }
+}
+
+bool Game::handleInput() {
+    Command* command = input_handler_->handleInput(state_ == GAME_OVER);
+    if (!command) return false;
+
+    command->execute(player_);
+    return true;
+}
+
+void Game::initialize() {
+    if (state_ != GAME_OVER) return;
+
+    state_ = PLAYING;
+    landscape_->onInitialize();
 }
 
 void Game::draw() {

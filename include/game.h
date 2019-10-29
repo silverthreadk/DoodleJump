@@ -18,6 +18,10 @@ class Game {
     void gameLoop();
 
  private:
+    bool handleInput();
+
+    void initialize();
+
     void draw();
 
     const int screen_width_;
