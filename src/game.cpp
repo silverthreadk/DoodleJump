@@ -73,7 +73,7 @@ void Game::gameLoop() {
                 app.close();
         }
 
-        if (handleInput()) {
+        if (e.type != sf::Event::LostFocus && handleInput()) {
             initialize();
         }
 
