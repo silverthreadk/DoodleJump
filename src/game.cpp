@@ -9,14 +9,14 @@
 #include "landscape.h"
 #include "platform.h"
 #include "player.h"
+#include "score_board.h"
 
 Game::Game() : screen_width_(400),
     screen_height_(533),
     app(sf::VideoMode(screen_width_, screen_height_), "Doodle Game!"),
     state_(PLAYING),
     landscape_(new Landscape()),
-    input_handler_(new InputHandler()),
-    high_score_(0) {
+    input_handler_(new InputHandler())  {
     srand(time(0));
 
     background_texture_.loadFromFile(RESOURCE_PATH + "images/background.png");
@@ -29,29 +29,8 @@ Game::Game() : screen_width_(400),
 
     app.setFramerateLimit(60);
 
-    auto initialize_text = [this](int font_size, sf::Text* text) {
-        text->setFont(font_);
-        text->setCharacterSize(font_size);
-        text->setStyle(sf::Text::Bold);
-        text->setColor(sf::Color::Black);
-    };
-
-    initialize_text(25, &game_over_text_);
-    game_over_text_.setString("Press Enter to Continue");
-    sf::FloatRect text_rect = game_over_text_.getLocalBounds();
-    game_over_text_.setOrigin(text_rect.left + text_rect.width / 2.0f,
-        text_rect.top + text_rect.height / 2.0f);
-    game_over_text_.setPosition(sf::Vector2f(screen_width_ / 2.f, -text_rect.height + screen_height_ / 2.f));
-
-    initialize_text(20, &high_score_text_);
-    high_score_text_.setOrigin(text_rect.left + text_rect.width / 2.0f,
-        text_rect.top + text_rect.height / 2.0f);
-    high_score_text_.setPosition(screen_width_ / 2.f, text_rect.height + screen_height_ / 2.f );
-
-    initialize_text(20, &score_text_);
-    score_text_.setPosition(10, 10);
-
     player_ = new Player(&doodle_texture_);
+    score_board_ = new ScoreBoard(&app, &font_);
 
     for (int i = 0; i < 10; i++) {
         std::shared_ptr<Platform> plat = std::make_shared<Platform>(&platform_texture_);
@@ -62,6 +41,7 @@ Game::Game() : screen_width_(400),
 Game::~Game() {
     delete landscape_;
     delete player_;
+    delete score_board_;
     delete input_handler_;
 }
 
@@ -75,20 +55,17 @@ void Game::gameLoop() {
 
         if (e.type != sf::Event::LostFocus && handleInput()) {
             initialize();
-        }
-
-        score_text_.setString("score : " + std::to_string(player_->getScore()));
-        high_score_text_.setString("high score : " + std::to_string(high_score_));
+        };
 
         if (player_->update()) {
             state_ = GAME_OVER;
-            high_score_ = std::max(high_score_, player_->getScore());
         }
 
         if (player_->isHighestPoint()) {
             landscape_->onUpdate(player_);
         }
         landscape_->onCalculate(player_);
+        score_board_->update(player_->getScore());
 
         draw();
     }
@@ -113,11 +90,7 @@ void Game::draw() {
     app.draw(background_sprite_);
     player_->draw(&app);
     landscape_->onDraw(&app);
-    app.draw(score_text_);
-    if (state_ == GAME_OVER) {
-        app.draw(game_over_text_);
-        app.draw(high_score_text_);
-    }
+    score_board_->draw(&app, state_ == GAME_OVER);
 
     app.display();
 }

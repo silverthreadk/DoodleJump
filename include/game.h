@@ -5,6 +5,7 @@
 
 class Landscape;
 class Player;
+class ScoreBoard;
 class InputHandler;
 
 class Game {
@@ -32,9 +33,6 @@ class Game {
     sf::Texture platform_texture_; 
     sf::Texture doodle_texture_;
     sf::Font font_;
-    sf::Text game_over_text_;
-    sf::Text score_text_;
-    sf::Text high_score_text_;
 
     sf::Sprite background_sprite_;
     sf::Sprite doodle_sprite_;
@@ -42,8 +40,8 @@ class Game {
     GameState state_;
     Landscape* landscape_;
     Player* player_;
+    ScoreBoard* score_board_;
     InputHandler* input_handler_;
-    int high_score_;
 };
 
 #endif  // GAME_H_
