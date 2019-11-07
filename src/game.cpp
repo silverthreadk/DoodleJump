@@ -14,7 +14,7 @@
 Game::Game() : screen_width_(400),
     screen_height_(533),
     app(sf::VideoMode(screen_width_, screen_height_), "Doodle Game!"),
-    state_(PLAYING),
+    state_(GAME_OVER),
     landscape_(new Landscape()),
     input_handler_(new InputHandler())  {
     srand(time(0));
@@ -29,7 +29,7 @@ Game::Game() : screen_width_(400),
 
     app.setFramerateLimit(60);
 
-    player_ = new Player(&doodle_texture_);
+    player_ = new Player(*this, &doodle_texture_);
     score_board_ = new ScoreBoard(&app, &font_);
 
     for (int i = 0; i < 10; i++) {
@@ -46,6 +46,8 @@ Game::~Game() {
 }
 
 void Game::gameLoop() {
+    state_ = PLAYING;
+
     while (app.isOpen()) {
         sf::Event e;
         while (app.pollEvent(e)) {
@@ -72,7 +74,7 @@ void Game::gameLoop() {
 }
 
 bool Game::handleInput() {
-    Command* command = input_handler_->handleInput(state_ == GAME_OVER);
+    Command* command = input_handler_->handleInput();
     if (!command) return false;
 
     command->execute(player_);

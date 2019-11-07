@@ -12,9 +12,9 @@ InputHandler::InputHandler() {
 InputHandler::~InputHandler() {
 }
 
-Command* InputHandler::handleInput(bool game_over) {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && game_over) return key_enter_;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !game_over) return key_left_;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !game_over) return key_right_;
+Command* InputHandler::handleInput() {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return key_enter_;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) return key_left_;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) return key_right_;
     return nullptr;
 }

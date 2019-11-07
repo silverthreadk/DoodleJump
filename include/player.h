@@ -3,9 +3,11 @@
 
 #include "entity.h"
 
+class Game;
+
 class Player : public Entity {
  public:
-    explicit Player(sf::Texture* texture);
+    Player(Game& game, sf::Texture* texture);
     ~Player();
     void initialize();
     void moveToLeft();
@@ -19,6 +21,7 @@ class Player : public Entity {
     int getScore() { return score; }
 
  private:
+    Game& game_;
     double dy;
     const int jump_height;
     int score;

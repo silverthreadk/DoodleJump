@@ -18,6 +18,8 @@ class Game {
 
     void gameLoop();
 
+    bool isPlaying() { return state_ == PLAYING; }
+
  private:
     bool handleInput();
 

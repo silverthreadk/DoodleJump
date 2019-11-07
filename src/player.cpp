@@ -2,7 +2,9 @@
 
 #include <SFML/Graphics.hpp>
 
-Player::Player(sf::Texture* texture) : Entity(texture), jump_height(200) {
+#include "game.h"
+
+Player::Player(Game& game, sf::Texture* texture) : Entity(texture), game_(game), jump_height(200) {
     initialize();
 }
 
@@ -10,6 +12,7 @@ Player::~Player() {
 }
 
 void Player::initialize() {
+    if (game_.isPlaying()) return;
     x = 160;
     y = 0;
     dy = 0;
