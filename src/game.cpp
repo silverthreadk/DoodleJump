@@ -57,13 +57,13 @@ void Game::gameLoop() {
 
         if (e.type != sf::Event::LostFocus && handleInput()) {
             initialize();
-        };
-
-        if (player_->update()) {
-            state_ = GAME_OVER;
         }
 
-        if (player_->isHighestPoint()) {
+        player_->drop();
+
+        if (player_->isLowestPoint()) {
+            state_ = GAME_OVER;
+        } else if (player_->isHighestPoint()) {
             landscape_->onUpdate(player_);
         }
         landscape_->onCalculate(player_);

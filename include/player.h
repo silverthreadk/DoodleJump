@@ -12,8 +12,9 @@ class Player : public Entity {
     void initialize();
     void moveToLeft();
     void moveToRight();
-    bool update();
+    void drop();
     void jump();
+    bool isLowestPoint();
     bool isHighestPoint();
     void addScore();
 

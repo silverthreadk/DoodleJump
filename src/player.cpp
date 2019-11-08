@@ -27,15 +27,17 @@ void Player::moveToRight() {
     x += 3;
 }
 
-bool Player::update() {
+void Player::drop() {
     dy += 0.2;
     y += dy;
-
-    return (y > 500);
 }
 
 void Player::jump() {
     dy = -10;
+}
+
+bool Player::isLowestPoint() {
+    return y > 500;
 }
 
 bool Player::isHighestPoint() {
