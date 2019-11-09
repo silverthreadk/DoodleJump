@@ -59,15 +59,7 @@ void Game::gameLoop() {
             initialize();
         }
 
-        player_->drop();
-
-        if (player_->isLowestPoint()) {
-            state_ = GAME_OVER;
-        } else if (player_->isHighestPoint()) {
-            landscape_->onUpdate(player_);
-        }
-        landscape_->onCalculate(player_);
-        score_board_->update(player_->getScore());
+        layout();
 
         draw();
     }
@@ -86,6 +78,19 @@ void Game::initialize() {
 
     state_ = PLAYING;
     landscape_->onInitialize();
+}
+
+void Game::layout() {
+    player_->drop();
+
+    if (player_->isLowestPoint()) {
+        state_ = GAME_OVER;
+    } else if (player_->isHighestPoint()) {
+        landscape_->onUpdate(player_);
+    }
+    landscape_->onCalculate(player_);
+
+    score_board_->update(player_->getScore());
 }
 
 void Game::draw() {

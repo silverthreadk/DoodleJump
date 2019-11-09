@@ -25,6 +25,8 @@ class Game {
 
     void initialize();
 
+    void layout();
+
     void draw();
 
     const int screen_width_;
