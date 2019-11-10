@@ -21,7 +21,6 @@ void Platform::update(Player* player) {
     if (y > 533) {
         y = -rand() % 250;
         x = rand() % 400;
-        player->addScore();
     }
 }
 

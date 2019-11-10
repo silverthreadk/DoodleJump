@@ -18,13 +18,14 @@ class Player : public Entity {
     bool isHighestPoint();
     void addScore();
 
-    double getVelocity() { return dy; }
+    double getVelocity() { return velocity_; }
     int getScore() { return score; }
 
  private:
     Game& game_;
-    double dy;
-    const int jump_height;
+    double velocity_;
+    const int jump_height_;
+    int dy_;
     int score;
 };
 

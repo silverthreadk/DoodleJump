@@ -4,7 +4,7 @@
 
 #include "game.h"
 
-Player::Player(Game& game, sf::Texture* texture) : Entity(texture), game_(game), jump_height(200) {
+Player::Player(Game& game, sf::Texture* texture) : Entity(texture), game_(game), jump_height_(200) {
     initialize();
 }
 
@@ -15,7 +15,8 @@ void Player::initialize() {
     if (game_.isPlaying()) return;
     x = 160;
     y = 0;
-    dy = 0;
+    velocity_ = 0;
+    dy_ = 0;
     score = 0;
 }
 
@@ -28,12 +29,13 @@ void Player::moveToRight() {
 }
 
 void Player::drop() {
-    dy += 0.2;
-    y += dy;
+    velocity_ += 0.2;
+    y += velocity_;
 }
 
 void Player::jump() {
-    dy = -10;
+    dy_ = 500 - y;
+    velocity_ = -10;
 }
 
 bool Player::isLowestPoint() {
@@ -41,13 +43,16 @@ bool Player::isLowestPoint() {
 }
 
 bool Player::isHighestPoint() {
-    if (y < jump_height) {
-        y = jump_height;
+    if (y < jump_height_) {
+        y = jump_height_;
         return true;
     }
     return false;
 }
 
 void Player::addScore() {
+    if (dy_ < 100) return;
+
     score += 10;
+    dy_ -= 100;
 }

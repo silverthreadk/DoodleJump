@@ -86,11 +86,12 @@ void Game::layout() {
     if (player_->isLowestPoint()) {
         state_ = GAME_OVER;
     } else if (player_->isHighestPoint()) {
+        player_->addScore();
+        score_board_->update(player_->getScore());
+
         landscape_->onUpdate(player_);
     }
     landscape_->onCalculate(player_);
-
-    score_board_->update(player_->getScore());
 }
 
 void Game::draw() {
