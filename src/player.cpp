@@ -11,8 +11,14 @@ Player::Player(Game& game, sf::Texture* texture) : Entity(texture), game_(game),
 Player::~Player() {
 }
 
-void Player::initialize() {
+void Player::restart() {
     if (game_.isPlaying()) return;
+
+    game_.initialize();
+    initialize();
+}
+
+void Player::initialize() {
     x = 160;
     y = 0;
     velocity_ = 0;

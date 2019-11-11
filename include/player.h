@@ -9,7 +9,7 @@ class Player : public Entity {
  public:
     Player(Game& game, sf::Texture* texture);
     ~Player();
-    void initialize();
+    void restart();
     void moveToLeft();
     void moveToRight();
     void drop();
@@ -22,6 +22,8 @@ class Player : public Entity {
     int getScore() { return score; }
 
  private:
+    void initialize();
+
     Game& game_;
     double velocity_;
     const int jump_height_;

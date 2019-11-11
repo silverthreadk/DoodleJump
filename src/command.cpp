@@ -3,7 +3,7 @@
 #include "player.h"
 
 void StartCommand::execute(Player* player) {
-    player->initialize();
+    player->restart();
 }
 
 void LeftCommand::execute(Player* player) {

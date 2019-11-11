@@ -16,14 +16,14 @@ class Game {
 
     ~Game();
 
+    void initialize();
+
     void gameLoop();
 
     bool isPlaying() { return state_ == PLAYING; }
 
  private:
-    bool handleInput();
-
-    void initialize();
+    void handleInput();
 
     void layout();
 
