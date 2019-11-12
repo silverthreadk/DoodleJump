@@ -88,7 +88,7 @@ void Game::layout() {
 
         landscape_->onUpdate(player_);
     }
-    landscape_->onCalculate(player_);
+    landscape_->onFallen(player_);
 }
 
 void Game::draw() {

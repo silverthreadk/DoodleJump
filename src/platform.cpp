@@ -24,7 +24,9 @@ void Platform::update(Player* player) {
     }
 }
 
-void Platform::calculate(Player* player) {
-    if ((player->getX() + 50 > x) && (player->getX() + 20 < x + 68)
-        && (player->getY() + 70 > y) && (player->getY() + 70 < y + 14) && (player->getVelocity() > 0)) player->jump();
+void Platform::fallen(Player* player) {
+    if ((player->getVelocity() > 0)
+        && isIntersecting(player)) {
+        player->jump();
+    }
 }

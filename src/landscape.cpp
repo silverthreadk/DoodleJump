@@ -25,9 +25,9 @@ void Subject::update(Player* player) {
     }
 }
 
-void Subject::calculate(Player* player) {
+void Subject::fallen(Player* player) {
     for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
-        (*observer)->calculate(player);
+        (*observer)->fallen(player);
     }
 }
 
@@ -45,8 +45,8 @@ void Landscape::onUpdate(Player* player) {
     update(player);
 }
 
-void Landscape::onCalculate(Player* player) {
-    calculate(player);
+void Landscape::onFallen(Player* player) {
+    fallen(player);
 }
 
 void Landscape::onDraw(sf::RenderWindow* app) {

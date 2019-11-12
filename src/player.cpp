@@ -21,6 +21,7 @@ void Player::restart() {
 void Player::initialize() {
     x = 160;
     y = 0;
+    horizontal_padding = 20;
     velocity_ = 0;
     dy_ = 0;
     score = 0;

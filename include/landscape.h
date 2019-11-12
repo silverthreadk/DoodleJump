@@ -19,7 +19,7 @@ class Subject {
  protected:
     void initialize();
     void update(Player* player);
-    void calculate(Player* player);
+    void fallen(Player* player);
     void draw(sf::RenderWindow* app);
 
  private:
@@ -30,7 +30,7 @@ class Landscape : public Subject {
  public:
     void onInitialize();
     void onUpdate(Player* player);
-    void onCalculate(Player* player);
+    void onFallen(Player* player);
     void onDraw(sf::RenderWindow* app);
 };
 #endif  // LANDSCAPE_H_

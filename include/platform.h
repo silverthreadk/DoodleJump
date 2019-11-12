@@ -11,7 +11,7 @@ class Observer : public Entity {
     virtual ~Observer() {}
     virtual void initialize() = 0;
     virtual void update(Player* player) = 0;
-    virtual void calculate(Player* player) = 0;
+    virtual void fallen(Player* player) = 0;
 };
 
 class Platform : public Observer {
@@ -20,7 +20,7 @@ class Platform : public Observer {
     ~Platform();
     void initialize();
     void update(Player* player);
-    void calculate(Player* player);
+    void fallen(Player* player);
 };
 
 #endif  // PLAT_H_
