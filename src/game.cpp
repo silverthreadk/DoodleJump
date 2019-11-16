@@ -13,10 +13,13 @@
 
 Game::Game() : screen_width_(400),
     screen_height_(533),
+    max_difficulty_level_(6),
+    intial_frame_rate_(60),
     app(sf::VideoMode(screen_width_, screen_height_), "Doodle Game!"),
     state_(PLAYING),
     landscape_(new Landscape()),
-    input_handler_(new InputHandler())  {
+    input_handler_(new InputHandler()),
+    difficulty_level_(0) {
     srand(time(0));
 
     background_texture_.loadFromFile(RESOURCE_PATH + "images/background.png");
@@ -27,7 +30,7 @@ Game::Game() : screen_width_(400),
     background_sprite_.setTexture(background_texture_);
     doodle_sprite_.setTexture(doodle_texture_);
 
-    app.setFramerateLimit(60);
+    app.setFramerateLimit(intial_frame_rate_);
 
     player_ = new Player(*this, &doodle_texture_);
     score_board_ = new ScoreBoard(&app, &font_);
@@ -59,6 +62,8 @@ void Game::gameLoop() {
 
         layout();
 
+        adjustDifficultyLevel();
+
         draw();
     }
 }
@@ -74,6 +79,7 @@ void Game::initialize() {
     if (state_ != GAME_OVER) return;
 
     state_ = PLAYING;
+    difficulty_level_ = 0;
     landscape_->onInitialize();
 }
 
@@ -98,4 +104,12 @@ void Game::draw() {
     score_board_->draw(&app, state_ == GAME_OVER);
 
     app.display();
+}
+
+void Game::adjustDifficultyLevel() {
+    if (difficulty_level_ > max_difficulty_level_) return;
+    if (player_->getScore() < difficulty_level_ * 1000) return;
+
+    ++difficulty_level_;
+    app.setFramerateLimit(difficulty_level_ * 10 + intial_frame_rate_);
 }
