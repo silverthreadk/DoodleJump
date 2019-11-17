@@ -15,7 +15,7 @@ Game::Game() : screen_width_(400),
     screen_height_(533),
     max_difficulty_level_(6),
     intial_frame_rate_(60),
-    app(sf::VideoMode(screen_width_, screen_height_), "Doodle Game!"),
+    app_(sf::VideoMode(screen_width_, screen_height_), "Doodle Game!"),
     state_(PLAYING),
     landscape_(new Landscape()),
     input_handler_(new InputHandler()),
@@ -30,10 +30,10 @@ Game::Game() : screen_width_(400),
     background_sprite_.setTexture(background_texture_);
     doodle_sprite_.setTexture(doodle_texture_);
 
-    app.setFramerateLimit(intial_frame_rate_);
+    app_.setFramerateLimit(intial_frame_rate_);
 
     player_ = new Player(*this, &doodle_texture_);
-    score_board_ = new ScoreBoard(&app, &font_);
+    score_board_ = new ScoreBoard(&app_, &font_);
 
     for (int i = 0; i < 10; i++) {
         std::shared_ptr<Platform> plat = std::make_shared<Platform>(&platform_texture_);
@@ -48,12 +48,12 @@ Game::~Game() {
     delete input_handler_;
 }
 
-void Game::gameLoop() {
-    while (app.isOpen()) {
+void Game::run() {
+    while (app_.isOpen()) {
         sf::Event e;
-        while (app.pollEvent(e)) {
+        while (app_.pollEvent(e)) {
             if (e.type == sf::Event::Closed)
-                app.close();
+                app_.close();
         }
 
         if (e.type != sf::Event::LostFocus) {
@@ -98,12 +98,12 @@ void Game::layout() {
 }
 
 void Game::draw() {
-    app.draw(background_sprite_);
-    player_->draw(&app);
-    landscape_->onDraw(&app);
-    score_board_->draw(&app, state_ == GAME_OVER);
+    app_.draw(background_sprite_);
+    player_->draw(&app_);
+    landscape_->onDraw(&app_);
+    score_board_->draw(&app_, state_ == GAME_OVER);
 
-    app.display();
+    app_.display();
 }
 
 void Game::adjustDifficultyLevel() {
@@ -111,5 +111,5 @@ void Game::adjustDifficultyLevel() {
     if (player_->getScore() < difficulty_level_ * 1000) return;
 
     ++difficulty_level_;
-    app.setFramerateLimit(difficulty_level_ * 10 + intial_frame_rate_);
+    app_.setFramerateLimit(difficulty_level_ * 10 + intial_frame_rate_);
 }

@@ -15,15 +15,15 @@ class Entity {
     bool isIntersecting(Entity* entity) const;
 
  protected:
-    int getLeft() const { return x; }
-    int getTop() const { return y; }
+    int getLeft() const { return x_; }
+    int getTop() const { return y_; }
     int getBottom() const;
     int getRight() const;
 
     sf::Sprite* sprite_;
-    int x;
-    int y;
-    int horizontal_padding;
+    int x_;
+    int y_;
+    int horizontal_padding_;
 };
 
 #endif  // ENTITY_H_

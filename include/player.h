@@ -14,12 +14,11 @@ class Player : public Entity {
     void moveToRight();
     void drop();
     void jump();
-    bool isLowestPoint();
+    bool isLowestPoint() const;
     bool isHighestPoint();
     void addScore();
-
-    double getVelocity() { return velocity_; }
-    int getScore() { return score; }
+    double getVelocity() const { return velocity_; }
+    int getScore() const { return score_; }
 
  private:
     void initialize();
@@ -28,7 +27,7 @@ class Player : public Entity {
     double velocity_;
     const int jump_height_;
     int dy_;
-    int score;
+    int score_;
 };
 
 #endif  // PLAYER_H_

@@ -7,6 +7,7 @@ class InputHandler {
     InputHandler();
     ~InputHandler();
     Command* handleInput();
+
  private:
     Command* key_enter_;
     Command* key_left_;

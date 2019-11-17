@@ -19,39 +19,39 @@ void Player::restart() {
 }
 
 void Player::initialize() {
-    x = 160;
-    y = 0;
-    horizontal_padding = 20;
+    x_ = 160;
+    y_ = 0;
+    horizontal_padding_ = 20;
     velocity_ = 0;
     dy_ = 0;
-    score = 0;
+    score_ = 0;
 }
 
 void Player::moveToLeft() {
-    x -= 3;
+    x_ -= 3;
 }
 
 void Player::moveToRight() {
-    x += 3;
+    x_ += 3;
 }
 
 void Player::drop() {
     velocity_ += 0.2;
-    y += velocity_;
+    y_ += velocity_;
 }
 
 void Player::jump() {
-    dy_ = 500 - y;
+    dy_ = 500 - y_;
     velocity_ = -10;
 }
 
-bool Player::isLowestPoint() {
-    return y > 500;
+bool Player::isLowestPoint() const {
+    return y_ > 500;
 }
 
 bool Player::isHighestPoint() {
-    if (y < jump_height_) {
-        y = jump_height_;
+    if (y_ < jump_height_) {
+        y_ = jump_height_;
         return true;
     }
     return false;
@@ -60,6 +60,6 @@ bool Player::isHighestPoint() {
 void Player::addScore() {
     if (dy_ < 100) return;
 
-    score += 10;
+    score_ += 10;
     dy_ -= 100;
 }

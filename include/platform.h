@@ -23,4 +23,4 @@ class Platform : public Observer {
     void fallen(Player* player);
 };
 
-#endif  // PLAT_H_
+#endif  // PLATFORM_H_

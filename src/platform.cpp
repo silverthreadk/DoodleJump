@@ -12,15 +12,15 @@ Platform::~Platform() {
 }
 
 void Platform::initialize() {
-    x = rand() % 400;
-    y = rand() % 533;
+    x_ = rand() % 400;
+    y_ = rand() % 533;
 }
 
 void Platform::update(Player* player) {
-    y = y - player->getVelocity();
-    if (y > 533) {
-        y = -rand() % 250;
-        x = rand() % 400;
+    y_ = y_ - player->getVelocity();
+    if (y_ > 533) {
+        y_ = -rand() % 250;
+        x_ = rand() % 400;
     }
 }
 

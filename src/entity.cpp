@@ -10,21 +10,21 @@ Entity::~Entity() {
 }
 
 void Entity::draw(sf::RenderWindow* app) {
-    sprite_->setPosition(x, y);
+    sprite_->setPosition(x_, y_);
     app->draw(*sprite_);
 }
 
 bool Entity::isIntersecting(Entity* entity) const {
-    return (entity->getRight() - entity->horizontal_padding > getLeft())
-        && (entity->getLeft() + entity->horizontal_padding < getRight())
+    return (entity->getRight() - entity->horizontal_padding_ > getLeft())
+        && (entity->getLeft() + entity->horizontal_padding_ < getRight())
         && (entity->getBottom() > getTop())
         && (entity->getBottom() < getBottom());
 }
 
 int Entity::getRight() const {
-    return x + sprite_->getLocalBounds().width;
+    return x_ + sprite_->getLocalBounds().width;
 }
 
 int Entity::getBottom() const {
-    return y + sprite_->getLocalBounds().height;
+    return y_ + sprite_->getLocalBounds().height;
 }

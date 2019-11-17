@@ -10,11 +10,8 @@ class InputHandler;
 class ScoreBoard {
  public:
     ScoreBoard(sf::RenderWindow* app, sf::Font* font);
-
     ~ScoreBoard();
-
     void update(int score);
-
     void draw(sf::RenderWindow* app, const bool is_game_over);
 
  private:

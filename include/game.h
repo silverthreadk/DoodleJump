@@ -13,22 +13,15 @@ class Game {
     enum GameState { PLAYING, GAME_OVER };
 
     Game();
-
     ~Game();
-
     void initialize();
-
-    void gameLoop();
-
-    bool isPlaying() { return state_ == PLAYING; }
+    void run();
+    bool isPlaying() const { return state_ == PLAYING; }
 
  private:
     void handleInput();
-
     void layout();
-
     void draw();
-
     void adjustDifficultyLevel();
 
     const int screen_width_;
@@ -37,9 +30,9 @@ class Game {
     const int max_difficulty_level_;
     const int intial_frame_rate_;
 
-    sf::RenderWindow app;
+    sf::RenderWindow app_;
     sf::Texture background_texture_;
-    sf::Texture platform_texture_; 
+    sf::Texture platform_texture_;
     sf::Texture doodle_texture_;
     sf::Font font_;
 
