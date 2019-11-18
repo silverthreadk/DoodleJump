@@ -33,7 +33,7 @@ Game::Game() : screen_width_(400),
     app_.setFramerateLimit(intial_frame_rate_);
 
     player_ = new Player(*this, &doodle_texture_);
-    score_board_ = new ScoreBoard(&app_, &font_);
+    score_board_ = new ScoreBoard(&app_, &font_, *this);
 
     for (int i = 0; i < 10; i++) {
         std::shared_ptr<Platform> plat = std::make_shared<Platform>(&platform_texture_);
@@ -101,7 +101,7 @@ void Game::draw() {
     app_.draw(background_sprite_);
     player_->draw(&app_);
     landscape_->onDraw(&app_);
-    score_board_->draw(&app_, state_ == GAME_OVER);
+    score_board_->draw(&app_);
 
     app_.display();
 }

@@ -6,19 +6,21 @@
 class Landscape;
 class Player;
 class InputHandler;
+class Game;
 
 class ScoreBoard {
  public:
-    ScoreBoard(sf::RenderWindow* app, sf::Font* font);
+    ScoreBoard(sf::RenderWindow* app, sf::Font* font, Game& game);
     ~ScoreBoard();
     void update(int score);
-    void draw(sf::RenderWindow* app, const bool is_game_over);
+    void draw(sf::RenderWindow* app);
 
  private:
     sf::Text score_text_;
     sf::Text high_score_text_;
     sf::Text game_over_text_;
 
+    Game& game_;
     int high_score_;
 };
 

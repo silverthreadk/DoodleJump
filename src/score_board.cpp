@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "game.h"
+
 static void initilazeText(sf::Font* font, int font_size, sf::Text* text) {
     text->setFont(*font);
     text->setCharacterSize(font_size);
@@ -9,7 +11,8 @@ static void initilazeText(sf::Font* font, int font_size, sf::Text* text) {
     text->setColor(sf::Color::Black);
 }
 
-ScoreBoard::ScoreBoard(sf::RenderWindow* app, sf::Font* font) :
+ScoreBoard::ScoreBoard(sf::RenderWindow* app, sf::Font* font, Game& game) :
+    game_(game),
     high_score_(0) {
     initilazeText(font, 25, &game_over_text_);
     game_over_text_.setString("Press Enter to Continue");
@@ -36,10 +39,10 @@ void ScoreBoard::update(int score) {
     high_score_text_.setString("high score : " + std::to_string(high_score_));
 }
 
-void ScoreBoard::draw(sf::RenderWindow* app, const bool is_game_over) {
+void ScoreBoard::draw(sf::RenderWindow* app) {
     app->draw(score_text_);
-    if (is_game_over) {
-        app->draw(game_over_text_);
-        app->draw(high_score_text_);
-    }
+
+    if (game_.isPlaying()) return;
+    app->draw(game_over_text_);
+    app->draw(high_score_text_);
 }

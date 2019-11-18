@@ -11,7 +11,7 @@ class Entity {
  public:
     explicit Entity(sf::Texture* texture);
     virtual ~Entity();
-    void draw(sf::RenderWindow* app);
+    virtual void draw(sf::RenderWindow* app);
     bool isIntersecting(Entity* entity) const;
 
  protected:
