@@ -20,10 +20,11 @@ void Player::restart() {
 
 void Player::initialize() {
     x_ = 160;
-    y_ = 0;
+    y_ = jump_height_;
     horizontal_padding_ = 20;
     velocity_ = 0;
     dy_ = 0;
+    lives_ = 3;
     score_ = 0;
 }
 
@@ -43,6 +44,19 @@ void Player::drop() {
 void Player::jump() {
     dy_ = 500 - y_;
     velocity_ = -10;
+}
+
+void Player::revive() {
+    --lives_;
+    if (lives_ < 1) {
+        game_.gameOver();
+        return;
+    }
+
+    x_ = 160;
+    y_ = jump_height_;
+    velocity_ = 0;
+    dy_ = 0;
 }
 
 bool Player::isLowestPoint() const {

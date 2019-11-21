@@ -87,7 +87,7 @@ void Game::layout() {
     player_->drop();
 
     if (player_->isLowestPoint()) {
-        state_ = GAME_OVER;
+        player_->revive();
     } else if (player_->isHighestPoint()) {
         player_->addScore();
         score_board_->update(player_->getScore());
