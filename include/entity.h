@@ -10,6 +10,7 @@ class Texture;
 class Entity {
  public:
     explicit Entity(sf::Texture* texture);
+    Entity(sf::Texture* texture, const int x, const int y);
     virtual ~Entity();
     virtual void draw(sf::RenderWindow* app);
     bool isIntersecting(Entity* entity) const;

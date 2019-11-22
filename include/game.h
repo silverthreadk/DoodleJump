@@ -6,6 +6,7 @@
 class Landscape;
 class Player;
 class ScoreBoard;
+class LifeBoard;
 class InputHandler;
 
 class Game {
@@ -44,6 +45,7 @@ class Game {
     Landscape* landscape_;
     Player* player_;
     ScoreBoard* score_board_;
+    LifeBoard* life_board_;
     InputHandler* input_handler_;
     int difficulty_level_;
 };

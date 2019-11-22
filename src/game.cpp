@@ -10,6 +10,7 @@
 #include "platform.h"
 #include "player.h"
 #include "score_board.h"
+#include "life_board.h"
 
 Game::Game() : screen_width_(400),
     screen_height_(533),
@@ -34,6 +35,7 @@ Game::Game() : screen_width_(400),
 
     player_ = new Player(*this, &doodle_texture_);
     score_board_ = new ScoreBoard(&app_, &font_, *this);
+    life_board_ = new LifeBoard(&doodle_texture_, player_->getLives());
 
     for (int i = 0; i < 10; i++) {
         std::shared_ptr<Platform> plat = std::make_shared<Platform>(&platform_texture_);
@@ -88,6 +90,7 @@ void Game::layout() {
 
     if (player_->isLowestPoint()) {
         player_->revive();
+        life_board_->update();
     } else if (player_->isHighestPoint()) {
         player_->addScore();
         score_board_->update(player_->getScore());
@@ -102,6 +105,7 @@ void Game::draw() {
     player_->draw(&app_);
     landscape_->onDraw(&app_);
     score_board_->draw(&app_);
+    life_board_->draw(&app_);
 
     app_.display();
 }

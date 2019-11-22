@@ -2,7 +2,16 @@
 
 #include <SFML/Graphics.hpp>
 
-Entity::Entity(sf::Texture* texture) : sprite_(new sf::Sprite(*texture)) {
+Entity::Entity(sf::Texture* texture) : sprite_(new sf::Sprite(*texture)),
+    x_(0),
+    y_(0),
+    horizontal_padding_(0) {
+}
+
+Entity::Entity(sf::Texture* texture, const int x, const int y) : sprite_(new sf::Sprite(*texture)),
+    x_(x),
+    y_(y),
+    horizontal_padding_(0) {
 }
 
 Entity::~Entity() {

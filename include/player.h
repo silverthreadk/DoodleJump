@@ -20,6 +20,7 @@ class Player : public Entity {
     void addScore();
     double getVelocity() const { return velocity_; }
     int getScore() const { return score_; }
+    int getLives() const { return lives_; }
 
  private:
     void initialize();
