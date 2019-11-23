@@ -35,5 +35,9 @@ int Entity::getRight() const {
 }
 
 int Entity::getBottom() const {
-    return y_ + sprite_->getLocalBounds().height;
+    return y_ + getHeight();
+}
+
+int Entity::getHeight() const {
+    return sprite_->getLocalBounds().height;
 }

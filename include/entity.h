@@ -20,6 +20,7 @@ class Entity {
     int getTop() const { return y_; }
     int getBottom() const;
     int getRight() const;
+    int getHeight() const;
 
     sf::Sprite* sprite_;
     int x_;

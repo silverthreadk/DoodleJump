@@ -21,6 +21,9 @@ class Platform : public Observer {
     void initialize();
     void update(Player* player);
     void fallen(Player* player);
+
+ private:
+    static Platform* top_platform_;
 };
 
 #endif  // PLATFORM_H_
