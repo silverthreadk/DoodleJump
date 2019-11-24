@@ -27,7 +27,7 @@ void Platform::initialize() {
 void Platform::update(Player* player) {
     y_ = y_ - player->getVelocity();
     if (y_ > 533) {
-        y_ = std::min(-getHeight(), top_platform_->getTop() - rand() % 100);
+        y_ = std::min(-getHeight(), top_platform_->getTop() - rand() % 100 - player->getScore() / 100);
         x_ = rand() % 400;
         top_platform_ = this;
     }
