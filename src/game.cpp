@@ -18,13 +18,14 @@ Game::Game() : screen_width_(400),
     intial_frame_rate_(60),
     app_(sf::VideoMode(screen_width_, screen_height_), "Doodle Game!"),
     state_(PLAYING),
-    landscape_(new Landscape()),
+    landscape_(nullptr),
     input_handler_(new InputHandler()),
     difficulty_level_(0) {
     srand(time(0));
 
     background_texture_.loadFromFile(RESOURCE_PATH + "images/background.png");
-    platform_texture_.loadFromFile(RESOURCE_PATH + "images/platform.png");
+    lawn_texture_.loadFromFile(RESOURCE_PATH + "images/grass.png");
+    stone_texture_.loadFromFile(RESOURCE_PATH + "images/stone.png");
     doodle_texture_.loadFromFile(RESOURCE_PATH + "images/doodle.png");
     font_.loadFromFile(RESOURCE_PATH + "fonts/nanumgothic.ttf");
 
@@ -37,10 +38,7 @@ Game::Game() : screen_width_(400),
     score_board_ = new ScoreBoard(&app_, &font_, *this);
     life_board_ = new LifeBoard(&doodle_texture_, player_->getLives());
 
-    for (int i = 0; i < 10; i++) {
-        std::shared_ptr<Platform> plat = std::make_shared<Platform>(&platform_texture_);
-        landscape_->addObserver(plat);
-    }
+    initializePlatform();
 }
 
 Game::~Game() {
@@ -79,10 +77,23 @@ void Game::handleInput() {
 
 void Game::initialize() {
     if (state_ != GAME_OVER) return;
+    initializePlatform();
 
     state_ = PLAYING;
     difficulty_level_ = 0;
-    landscape_->onInitialize();
+}
+
+void Game::initializePlatform() {
+    if (landscape_) delete landscape_;
+    landscape_ = new Landscape();
+
+    for (int i = 0; i < 10; i++) {
+        std::shared_ptr<Platform> plat = std::make_shared<Platform>(&lawn_texture_, Platform::GRASS, -10);
+        landscape_->addObserver(plat);
+    }
+
+    std::shared_ptr<Platform> plat = std::make_shared<Platform>(&stone_texture_, Platform::STONE, -5);
+    landscape_->addObserver(plat);
 }
 
 void Game::layout() {

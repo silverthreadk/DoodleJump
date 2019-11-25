@@ -21,6 +21,7 @@ class Game {
     void gameOver() { state_ = GAME_OVER; }
 
  private:
+    void initializePlatform();
     void handleInput();
     void layout();
     void draw();
@@ -34,7 +35,8 @@ class Game {
 
     sf::RenderWindow app_;
     sf::Texture background_texture_;
-    sf::Texture platform_texture_;
+    sf::Texture lawn_texture_;
+    sf::Texture stone_texture_;
     sf::Texture doodle_texture_;
     sf::Font font_;
 

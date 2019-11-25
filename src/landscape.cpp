@@ -13,12 +13,6 @@ void Subject::removeObserver(std::shared_ptr<Observer> observer) {
     observers_.remove(observer);
 }
 
-void Subject::initialize() {
-    for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
-        (*observer)->initialize();
-    }
-}
-
 void Subject::update(Player* player) {
     for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
         (*observer)->update(player);
@@ -37,8 +31,11 @@ void Subject::draw(sf::RenderWindow* app) {
     }
 }
 
-void Landscape::onInitialize() {
-    initialize();
+Landscape::Landscape() {
+}
+
+Landscape::~Landscape() {
+    Platform::clearTopPlatform();
 }
 
 void Landscape::onUpdate(Player* player) {

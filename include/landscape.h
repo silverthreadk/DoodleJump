@@ -17,7 +17,6 @@ class Subject {
     void removeObserver(std::shared_ptr<Observer> observer);
 
  protected:
-    void initialize();
     void update(Player* player);
     void fallen(Player* player);
     void draw(sf::RenderWindow* app);
@@ -28,7 +27,8 @@ class Subject {
 
 class Landscape : public Subject {
  public:
-    void onInitialize();
+    Landscape();
+    ~Landscape();
     void onUpdate(Player* player);
     void onFallen(Player* player);
     void onDraw(sf::RenderWindow* app);

@@ -41,9 +41,9 @@ void Player::drop() {
     y_ += velocity_;
 }
 
-void Player::jump() {
+void Player::jump(const int velocity) {
     dy_ = 500 - y_;
-    velocity_ = -10;
+    velocity_ = velocity;
 }
 
 void Player::revive() {
@@ -54,7 +54,7 @@ void Player::revive() {
     }
 
     x_ = 160;
-    y_ = jump_height_;
+    y_ = 200;
     velocity_ = 0;
     dy_ = 0;
 }

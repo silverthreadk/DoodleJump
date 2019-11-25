@@ -16,7 +16,11 @@ class Observer : public Entity {
 
 class Platform : public Observer {
  public:
-    explicit Platform(sf::Texture* texture);
+    enum PLATFORM_TYPE { GRASS, STONE};
+
+    static void clearTopPlatform() { top_platform_ = nullptr; }
+
+    Platform(sf::Texture* texture, PLATFORM_TYPE type, const int velocity);
     ~Platform();
     void initialize();
     void update(Player* player);
@@ -24,6 +28,8 @@ class Platform : public Observer {
 
  private:
     static Platform* top_platform_;
+    PLATFORM_TYPE type_;
+    const int velocity_;
 };
 
 #endif  // PLATFORM_H_

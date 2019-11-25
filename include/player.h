@@ -13,7 +13,7 @@ class Player : public Entity {
     void moveToLeft();
     void moveToRight();
     void drop();
-    void jump();
+    void jump(const int velocity);
     void revive();
     bool isLowestPoint() const;
     bool isHighestPoint();
