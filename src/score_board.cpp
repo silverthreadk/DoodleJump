@@ -28,6 +28,7 @@ ScoreBoard::ScoreBoard(sf::RenderWindow* app, sf::Font* font, Game& game) :
 
     initilazeText(font, 20, &score_text_);
     score_text_.setPosition(10, 10);
+    score_text_.setString("score : 0");
 }
 
 ScoreBoard::~ScoreBoard() {
