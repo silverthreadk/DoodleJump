@@ -4,6 +4,12 @@
 #include <memory>
 #include <string>
 #include <map>
+#include <cassert>
+
+namespace sf {
+    class Texture;
+    class Font;
+}
 
 namespace Textures {
     enum ID { BACKGROUND, GRASS, STONE, DOODLE };
@@ -28,5 +34,10 @@ class ResourceHolder {
     static ResourceHolder* resource_holder_;
     std::map<Identifier, std::unique_ptr<Resource > > resource_map_;
 };
+
+typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
+typedef ResourceHolder<sf::Font, Fonts::ID> FontHolder;
+
+#include "resource_holder.inl"
 
 #endif  // RESOURCE_HOLDER_H_

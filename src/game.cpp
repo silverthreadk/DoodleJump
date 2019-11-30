@@ -3,6 +3,7 @@
 #include <time.h>
 #include <string>
 
+#include "resource_holder.h"
 #include "config.h"
 #include "input_handler.h"
 #include "command.h"
@@ -23,20 +24,22 @@ Game::Game() : screen_width_(400),
     difficulty_level_(0) {
     srand(time(0));
 
-    background_texture_.loadFromFile(RESOURCE_PATH + "images/background.png");
-    lawn_texture_.loadFromFile(RESOURCE_PATH + "images/grass.png");
-    stone_texture_.loadFromFile(RESOURCE_PATH + "images/stone.png");
-    doodle_texture_.loadFromFile(RESOURCE_PATH + "images/doodle.png");
-    font_.loadFromFile(RESOURCE_PATH + "fonts/nanumgothic.ttf");
+    TextureHolder* texture_holder = TextureHolder::getInstance();
+    texture_holder->load(Textures::BACKGROUND, RESOURCE_PATH + "images/background.png");
+    texture_holder->load(Textures::GRASS, RESOURCE_PATH + "images/grass.png");
+    texture_holder->load(Textures::STONE, RESOURCE_PATH + "images/stone.png");
+    texture_holder->load(Textures::DOODLE, RESOURCE_PATH + "images/doodle.png");
 
-    background_sprite_.setTexture(background_texture_);
-    doodle_sprite_.setTexture(doodle_texture_);
+    FontHolder* font_holder = FontHolder::getInstance();
+    font_holder->load(Fonts::MAIN, RESOURCE_PATH + "fonts/nanumgothic.ttf");
+
+    background_sprite_.setTexture(texture_holder->get(Textures::BACKGROUND));
 
     app_.setFramerateLimit(intial_frame_rate_);
 
-    player_ = new Player(*this, &doodle_texture_);
-    score_board_ = new ScoreBoard(&app_, &font_, *this);
-    life_board_ = new LifeBoard(&doodle_texture_, player_->getLives());
+    player_ = new Player(*this, &texture_holder->get(Textures::DOODLE));
+    score_board_ = new ScoreBoard(&app_, &font_holder->get(Fonts::MAIN), *this);
+    life_board_ = new LifeBoard(&texture_holder->get(Textures::DOODLE), player_->getLives());
 
     initializePlatform();
 }
@@ -87,12 +90,14 @@ void Game::initializePlatform() {
     if (landscape_) delete landscape_;
     landscape_ = new Landscape();
 
+    TextureHolder* texture_holder = TextureHolder::getInstance();
+
     for (int i = 0; i < 10; i++) {
-        std::shared_ptr<Platform> plat = std::make_shared<Platform>(&lawn_texture_, Platform::GRASS, -10);
+        std::shared_ptr<Platform> plat = std::make_shared<Platform>(&texture_holder->get(Textures::GRASS), Platform::GRASS, -10);
         landscape_->addObserver(plat);
     }
 
-    std::shared_ptr<Platform> plat = std::make_shared<Platform>(&stone_texture_, Platform::STONE, -5);
+    std::shared_ptr<Platform> plat = std::make_shared<Platform>(&texture_holder->get(Textures::STONE), Platform::STONE, -5);
     landscape_->addObserver(plat);
 }
 

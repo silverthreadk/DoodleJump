@@ -34,14 +34,8 @@ class Game {
     const int intial_frame_rate_;
 
     sf::RenderWindow app_;
-    sf::Texture background_texture_;
-    sf::Texture lawn_texture_;
-    sf::Texture stone_texture_;
-    sf::Texture doodle_texture_;
-    sf::Font font_;
 
     sf::Sprite background_sprite_;
-    sf::Sprite doodle_sprite_;
 
     GameState state_;
     Landscape* landscape_;
