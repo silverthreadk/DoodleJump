@@ -24,14 +24,10 @@ Game::Game() : screen_width_(400),
     difficulty_level_(0) {
     srand(time(0));
 
-    TextureHolder* texture_holder = TextureHolder::getInstance();
-    texture_holder->load(Textures::BACKGROUND, RESOURCE_PATH + "images/background.png");
-    texture_holder->load(Textures::GRASS, RESOURCE_PATH + "images/grass.png");
-    texture_holder->load(Textures::STONE, RESOURCE_PATH + "images/stone.png");
-    texture_holder->load(Textures::DOODLE, RESOURCE_PATH + "images/doodle.png");
+    loadResource();
 
+    TextureHolder* texture_holder = TextureHolder::getInstance();
     FontHolder* font_holder = FontHolder::getInstance();
-    font_holder->load(Fonts::MAIN, RESOURCE_PATH + "fonts/nanumgothic.ttf");
 
     background_sprite_.setTexture(texture_holder->get(Textures::BACKGROUND));
 
@@ -76,6 +72,17 @@ void Game::handleInput() {
     if (!command) return;
 
     command->execute(player_);
+}
+
+void Game::loadResource() {
+    TextureHolder* texture_holder = TextureHolder::getInstance();
+    texture_holder->load(Textures::BACKGROUND, RESOURCE_PATH + "images/background.png");
+    texture_holder->load(Textures::GRASS, RESOURCE_PATH + "images/grass.png");
+    texture_holder->load(Textures::STONE, RESOURCE_PATH + "images/stone.png");
+    texture_holder->load(Textures::DOODLE, RESOURCE_PATH + "images/doodle.png");
+
+    FontHolder* font_holder = FontHolder::getInstance();
+    font_holder->load(Fonts::MAIN, RESOURCE_PATH + "fonts/nanumgothic.ttf");
 }
 
 void Game::initialize() {

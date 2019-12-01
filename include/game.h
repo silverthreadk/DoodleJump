@@ -21,6 +21,7 @@ class Game {
     void gameOver() { state_ = GAME_OVER; }
 
  private:
+    void loadResource();
     void initializePlatform();
     void handleInput();
     void layout();
