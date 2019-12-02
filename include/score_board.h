@@ -12,6 +12,7 @@ class ScoreBoard {
  public:
     ScoreBoard(sf::RenderWindow* app, sf::Font* font, Game& game);
     ~ScoreBoard();
+    void initialize();
     void update(int score);
     void draw(sf::RenderWindow* app);
 

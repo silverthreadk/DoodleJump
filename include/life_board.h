@@ -10,13 +10,15 @@ class Life;
 
 class LifeBoard {
  public:
-     LifeBoard(sf::Texture* texture, const int lives);
+    LifeBoard(const int lives);
     ~LifeBoard();
+    void initialize();
     void update();
     void draw(sf::RenderWindow* app);
 
  private:
     std::vector<std::shared_ptr<Life> > lives_;
+    int num_of_lives_;
 };
 
 #endif  // LIFE_BOARD_H_

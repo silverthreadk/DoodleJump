@@ -27,15 +27,14 @@ Game::Game() : screen_width_(400),
     loadResource();
 
     TextureHolder* texture_holder = TextureHolder::getInstance();
-    FontHolder* font_holder = FontHolder::getInstance();
 
     background_sprite_.setTexture(texture_holder->get(Textures::BACKGROUND));
 
     app_.setFramerateLimit(intial_frame_rate_);
 
     player_ = new Player(*this, &texture_holder->get(Textures::DOODLE));
-    score_board_ = new ScoreBoard(&app_, &font_holder->get(Fonts::MAIN), *this);
-    life_board_ = new LifeBoard(&texture_holder->get(Textures::DOODLE), player_->getLives());
+    score_board_ = new ScoreBoard(&app_, *this);
+    life_board_ = new LifeBoard(player_->getLives());
 
     initializePlatform();
 }
@@ -88,6 +87,8 @@ void Game::loadResource() {
 void Game::initialize() {
     if (state_ != GAME_OVER) return;
     initializePlatform();
+    score_board_->initialize();
+    life_board_->initialize();
 
     state_ = PLAYING;
     difficulty_level_ = 0;

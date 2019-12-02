@@ -1,16 +1,22 @@
 #include "life_board.h"
 
 #include <life.h>
+#include <resource_holder.h>
 
-LifeBoard::LifeBoard(sf::Texture* texture_, const int lives) {
-    int x = 400, y = 10;
-    for (int i = 0; i < lives; ++i) {
-        x = x - texture_->getSize().x / 2 - 5;
-        lives_.push_back(std::make_shared<Life>(texture_, x, y));
-    }
+LifeBoard::LifeBoard(const int lives) : num_of_lives_(lives) {
+    initialize();
 }
 
 LifeBoard::~LifeBoard() {
+}
+
+void LifeBoard::initialize() {
+    int x = 400, y = 10;
+    sf::Texture& texture = TextureHolder::getInstance()->get(Textures::DOODLE);
+    for (int i = 0; i < num_of_lives_; ++i) {
+        x = x - texture.getSize().x / 2 - 5;
+        lives_.push_back(std::make_shared<Life>(&texture, x, y));
+    }
 }
 
 void LifeBoard::update() {
