@@ -10,7 +10,7 @@ class Game;
 
 class ScoreBoard {
  public:
-    ScoreBoard(sf::RenderWindow* app, sf::Font* font, Game& game);
+    ScoreBoard(sf::RenderWindow* app, Game& game);
     ~ScoreBoard();
     void initialize();
     void update(int score);

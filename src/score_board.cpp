@@ -3,6 +3,7 @@
 #include <string>
 
 #include "game.h"
+#include "resource_holder.h"
 
 static void initilazeText(sf::Font* font, int font_size, sf::Text* text) {
     text->setFont(*font);
@@ -11,9 +12,11 @@ static void initilazeText(sf::Font* font, int font_size, sf::Text* text) {
     text->setColor(sf::Color::Black);
 }
 
-ScoreBoard::ScoreBoard(sf::RenderWindow* app, sf::Font* font, Game& game) :
+ScoreBoard::ScoreBoard(sf::RenderWindow* app, Game& game) :
     game_(game),
     high_score_(0) {
+    sf::Font* font = &FontHolder::getInstance()->get(Fonts::MAIN);
+
     initilazeText(font, 25, &game_over_text_);
     game_over_text_.setString("Press Enter to Continue");
     sf::FloatRect text_rect = game_over_text_.getLocalBounds();
