@@ -3,8 +3,9 @@
 #include <SFML/Graphics.hpp>
 
 #include "game.h"
+#include "resource_holder.h"
 
-Player::Player(Game& game, sf::Texture* texture) : Entity(texture), game_(game), jump_height_(200) {
+Player::Player(Game& game) : Entity(&TextureHolder::getInstance()->get(Textures::DOODLE)), game_(game), jump_height_(200) {
     initialize();
 }
 

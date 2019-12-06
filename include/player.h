@@ -7,7 +7,7 @@ class Game;
 
 class Player : public Entity {
  public:
-    Player(Game& game, sf::Texture* texture);
+    Player(Game& game);
     ~Player();
     void restart();
     void moveToLeft();

@@ -26,13 +26,11 @@ Game::Game() : screen_width_(400),
 
     loadResource();
 
-    TextureHolder* texture_holder = TextureHolder::getInstance();
-
-    background_sprite_.setTexture(texture_holder->get(Textures::BACKGROUND));
+    background_sprite_.setTexture(TextureHolder::getInstance()->get(Textures::BACKGROUND));
 
     app_.setFramerateLimit(intial_frame_rate_);
 
-    player_ = new Player(*this, &texture_holder->get(Textures::DOODLE));
+    player_ = new Player(*this);
     score_board_ = new ScoreBoard(&app_, *this);
     life_board_ = new LifeBoard(player_->getLives());
 
