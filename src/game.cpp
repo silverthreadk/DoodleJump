@@ -9,6 +9,8 @@
 #include "command.h"
 #include "landscape.h"
 #include "platform.h"
+#include "grass.h"
+#include "stone.h"
 #include "player.h"
 #include "score_board.h"
 #include "life_board.h"
@@ -96,14 +98,12 @@ void Game::initializePlatform() {
     if (landscape_) delete landscape_;
     landscape_ = new Landscape();
 
-    TextureHolder* texture_holder = TextureHolder::getInstance();
-
     for (int i = 0; i < 10; i++) {
-        std::shared_ptr<Platform> plat = std::make_shared<Platform>(&texture_holder->get(Textures::GRASS), Platform::GRASS, -10);
+        std::shared_ptr<Platform> plat = std::make_shared<Grass>();
         landscape_->addObserver(plat);
     }
 
-    std::shared_ptr<Platform> plat = std::make_shared<Platform>(&texture_holder->get(Textures::STONE), Platform::STONE, -5);
+    std::shared_ptr<Platform> plat = std::make_shared<Stone>();
     landscape_->addObserver(plat);
 }
 

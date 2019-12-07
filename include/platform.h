@@ -26,7 +26,7 @@ class Platform : public Observer {
     void update(Player* player);
     void fallen(Player* player);
 
- private:
+ protected:
     static Platform* top_platform_;
     PLATFORM_TYPE type_;
     const int velocity_;
