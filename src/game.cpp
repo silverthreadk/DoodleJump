@@ -8,6 +8,7 @@
 #include "input_handler.h"
 #include "command.h"
 #include "landscape.h"
+#include "spawner.h"
 #include "platform.h"
 #include "grass.h"
 #include "stone.h"
@@ -98,13 +99,15 @@ void Game::initializePlatform() {
     if (landscape_) delete landscape_;
     landscape_ = new Landscape();
 
+    SpawnerFor<Grass> grass_spawner;
     for (int i = 0; i < 10; i++) {
-        std::shared_ptr<Platform> plat = std::make_shared<Grass>();
-        landscape_->addObserver(plat);
+        std::shared_ptr<Platform> platform = grass_spawner.spawnPlatform();
+        landscape_->addObserver(platform);
     }
 
-    std::shared_ptr<Platform> plat = std::make_shared<Stone>();
-    landscape_->addObserver(plat);
+    SpawnerFor<Stone> stone_spawner;
+    std::shared_ptr<Platform> platform = stone_spawner.spawnPlatform();
+    landscape_->addObserver(platform);
 }
 
 void Game::layout() {
