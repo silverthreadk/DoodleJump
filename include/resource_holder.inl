@@ -2,11 +2,11 @@ template <typename Resource, typename Identifier>
 ResourceHolder<Resource, Identifier>* ResourceHolder<Resource, Identifier>::resource_holder_ = nullptr;
 
 template <typename Resource, typename Identifier>
-ResourceHolder<Resource, Identifier>::ResourceHolder<Resource, Identifier>() {
+ResourceHolder<Resource, Identifier>::ResourceHolder() {
 }
 
 template <typename Resource, typename Identifier>
-ResourceHolder<Resource, Identifier>::~ResourceHolder<Resource, Identifier>() {
+ResourceHolder<Resource, Identifier>::~ResourceHolder() {
 }
 
 template <typename Resource, typename Identifier>
