@@ -19,7 +19,7 @@ void Platform::initialize() {
     x_ = rand() % 400;
 
     if (!top_platform_) {
-        y_ = rand() % 200 + 333;
+        y_ = rand() % 100 + 433;
     } else {
         y_ = top_platform_->getTop() - rand() % 100;
     }
