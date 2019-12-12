@@ -13,6 +13,8 @@ class RenderWindow;
 
 class Subject {
  public:
+    Subject() {}
+    virtual ~Subject() {}
     void addObserver(std::shared_ptr<Observer> observer);
     void removeObserver(std::shared_ptr<Observer> observer);
 

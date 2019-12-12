@@ -7,6 +7,7 @@
 
 class Spawner {
  public:
+    Spawner() {}
     virtual ~Spawner() {}
     virtual std::shared_ptr<Platform> spawnPlatform() = 0;
 };
@@ -14,7 +15,7 @@ class Spawner {
 template <class T>
 class SpawnerFor : public Spawner {
  public:
-    virtual std::shared_ptr<Platform> spawnPlatform() { return std::make_shared<T>(); }
+    std::shared_ptr<Platform> spawnPlatform() { return std::make_shared<T>(); }
 };
 
 #endif  // SPAWNER_H_
