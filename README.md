@@ -12,6 +12,7 @@ The project was formerly referred by https://www.youtube.com/channel/UCC7qpnId5R
 * python
 * pip
 * conan
+* x11 (Linux)
 ```sh
 pip install conan
 pip install pyopenssl
@@ -33,4 +34,16 @@ conan install .. -s build_type=Release -s compiler.runtime=MT
 
 cmake -DCMAKE_GENERATOR_PLATFORM=x64 ../
 cmake --build ./ --
+```
+
+#### For linux
+Clone and run the build:
+```sh
+git clone https://github.com/silverthreadk/DoodleJump.git
+mkdir build && cd build
+
+conan install .. -s compiler.compiler=4.9
+
+cmake ../
+make DoodleJump_exe
 ```
