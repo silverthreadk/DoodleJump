@@ -2,6 +2,7 @@
 
 #include <life.h>
 #include <resource_holder.h>
+#include <config.h>
 
 LifeBoard::LifeBoard(const int lives) : num_of_lives_(lives) {
     initialize();
@@ -11,7 +12,7 @@ LifeBoard::~LifeBoard() {
 }
 
 void LifeBoard::initialize() {
-    int x = 400, y = 10;
+    int x = kScreenWidth, y = 10;
     sf::Texture& texture = TextureHolder::getInstance()->get(Textures::DOODLE);
     for (int i = 0; i < num_of_lives_; ++i) {
         x = x - texture.getSize().x / 2 - 5;

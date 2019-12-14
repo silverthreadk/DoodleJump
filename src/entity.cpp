@@ -38,6 +38,10 @@ int Entity::getBottom() const {
     return y_ + getHeight();
 }
 
+int Entity::getWidth() const {
+    return sprite_->getLocalBounds().width;
+}
+
 int Entity::getHeight() const {
     return sprite_->getLocalBounds().height;
 }

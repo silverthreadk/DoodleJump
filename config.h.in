@@ -1,3 +1,7 @@
 #include <string>
 
-std::string RESOURCE_PATH = "@RESOURCE_PATH@/";
+const std::string RESOURCE_PATH = "@RESOURCE_PATH@/";
+const int kScreenWidth = 400;
+const int kScreenHeight = 533;
+const int kMaxDifficultyLevel = 6;
+const int kIntialFrameRate = 60;

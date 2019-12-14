@@ -16,11 +16,7 @@
 #include "score_board.h"
 #include "life_board.h"
 
-Game::Game() : screen_width_(400),
-    screen_height_(533),
-    max_difficulty_level_(6),
-    intial_frame_rate_(60),
-    app_(sf::VideoMode(screen_width_, screen_height_), "Doodle Game!"),
+Game::Game() : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
     state_(PLAYING),
     landscape_(nullptr),
     input_handler_(new InputHandler()),
@@ -31,7 +27,7 @@ Game::Game() : screen_width_(400),
 
     background_sprite_.setTexture(TextureHolder::getInstance()->get(Textures::BACKGROUND));
 
-    app_.setFramerateLimit(intial_frame_rate_);
+    app_.setFramerateLimit(kIntialFrameRate);
 
     player_ = new Player(*this);
     score_board_ = new ScoreBoard(&app_, *this);
@@ -136,9 +132,9 @@ void Game::draw() {
 }
 
 void Game::adjustDifficultyLevel() {
-    if (difficulty_level_ > max_difficulty_level_) return;
+    if (difficulty_level_ > kMaxDifficultyLevel) return;
     if (player_->getScore() < difficulty_level_ * 1000) return;
 
     ++difficulty_level_;
-    app_.setFramerateLimit(difficulty_level_ * 10 + intial_frame_rate_);
+    app_.setFramerateLimit(difficulty_level_ * 10 + kIntialFrameRate);
 }

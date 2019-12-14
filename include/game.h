@@ -28,12 +28,6 @@ class Game {
     void draw();
     void adjustDifficultyLevel();
 
-    const int screen_width_;
-    const int screen_height_;
-
-    const int max_difficulty_level_;
-    const int intial_frame_rate_;
-
     sf::RenderWindow app_;
 
     sf::Sprite background_sprite_;

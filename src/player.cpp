@@ -4,8 +4,9 @@
 
 #include "game.h"
 #include "resource_holder.h"
+#include "config.h"
 
-Player::Player(Game& game) : Entity(&TextureHolder::getInstance()->get(Textures::DOODLE)), game_(game), jump_height_(200) {
+Player::Player(Game& game) : Entity(&TextureHolder::getInstance()->get(Textures::DOODLE)), game_(game) {
     initialize();
 }
 
@@ -20,8 +21,8 @@ void Player::restart() {
 }
 
 void Player::initialize() {
-    x_ = 160;
-    y_ = jump_height_;
+    x_ = (kScreenWidth - getWidth()) / 2;
+    y_ = kJumpHeight;
     horizontal_padding_ = 20;
     velocity_ = 0;
     dy_ = 0;
@@ -43,7 +44,7 @@ void Player::drop() {
 }
 
 void Player::jump(const int velocity) {
-    dy_ = 500 - y_;
+    dy_ = kScreenHeight - y_;
     velocity_ = velocity;
 }
 
@@ -54,19 +55,19 @@ void Player::revive() {
         return;
     }
 
-    x_ = 160;
-    y_ = 200;
+    x_ = (kScreenWidth - getWidth()) / 2;
+    y_ = kJumpHeight;
     velocity_ = 0;
     dy_ = 0;
 }
 
 bool Player::isLowestPoint() const {
-    return y_ > 500;
+    return y_ > kScreenHeight;
 }
 
 bool Player::isHighestPoint() {
-    if (y_ < jump_height_) {
-        y_ = jump_height_;
+    if (y_ < kJumpHeight) {
+        y_ = kJumpHeight;
         return true;
     }
     return false;

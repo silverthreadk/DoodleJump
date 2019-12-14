@@ -27,7 +27,6 @@ class Player : public Entity {
 
     Game& game_;
     double velocity_;
-    const int jump_height_;
     int dy_;
     int lives_;
     int score_;
