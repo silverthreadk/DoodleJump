@@ -40,6 +40,7 @@ Game::~Game() {
     delete landscape_;
     delete player_;
     delete score_board_;
+    delete life_board_;
     delete input_handler_;
 }
 

@@ -10,6 +10,9 @@ InputHandler::InputHandler() {
 }
 
 InputHandler::~InputHandler() {
+    delete key_enter_;
+    delete key_left_;
+    delete key_right_;
 }
 
 Command* InputHandler::handleInput() {
