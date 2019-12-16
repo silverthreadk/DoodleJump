@@ -32,10 +32,12 @@ void Player::initialize() {
 
 void Player::moveToLeft() {
     x_ -= 3;
+    x_ = std::max(x_, 0);
 }
 
 void Player::moveToRight() {
     x_ += 3;
+    x_ = std::min(x_, kScreenWidth - getWidth());
 }
 
 void Player::drop() {

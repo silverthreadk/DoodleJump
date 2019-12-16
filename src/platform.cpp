@@ -17,7 +17,7 @@ Platform::~Platform() {
 }
 
 void Platform::initialize() {
-    x_ = rand() % kScreenWidth;
+    x_ = rand() % (kScreenWidth - getWidth());
 
     if (!top_platform_) {
         y_ = rand() % 100 + kScreenHeight - 100;
@@ -31,7 +31,7 @@ void Platform::update(Player* player) {
     y_ = y_ - player->getVelocity();
     if (y_ > kScreenHeight) {
         y_ = std::min(-getHeight(), top_platform_->getTop() - rand() % 100 - player->getScore() / 100);
-        x_ = rand() % kScreenWidth;
+        x_ = rand() % (kScreenWidth - getWidth());
         if (type_ == GRASS) top_platform_ = this;
     }
 }
