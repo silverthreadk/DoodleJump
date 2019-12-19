@@ -24,6 +24,7 @@ class Player : public Entity {
 
  private:
     void initialize();
+    void initializeLocation();
 
     Game& game_;
     double velocity_;

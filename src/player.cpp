@@ -21,13 +21,18 @@ void Player::restart() {
 }
 
 void Player::initialize() {
-    x_ = (kScreenWidth - getWidth()) / 2;
-    y_ = kJumpHeight;
     horizontal_padding_ = 20;
-    velocity_ = 0;
-    dy_ = 0;
     lives_ = 3;
     score_ = 0;
+
+    initializeLocation();
+}
+
+void Player::initializeLocation() {
+    x_ = (kScreenWidth - getWidth()) / 2;
+    y_ = kJumpHeight;
+    velocity_ = 0;
+    dy_ = 0;
 }
 
 void Player::moveToLeft() {
@@ -57,10 +62,7 @@ void Player::revive() {
         return;
     }
 
-    x_ = (kScreenWidth - getWidth()) / 2;
-    y_ = kJumpHeight;
-    velocity_ = 0;
-    dy_ = 0;
+    initializeLocation();
 }
 
 bool Player::isLowestPoint() const {
