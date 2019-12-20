@@ -16,7 +16,7 @@ class Observer : public Entity {
 
 class Platform : public Observer {
  public:
-    enum PLATFORM_TYPE { GRASS, STONE};
+    enum PLATFORM_TYPE { GRASS, STONE, EARTH };
 
     static void clearTopPlatform() { top_platform_ = nullptr; }
 

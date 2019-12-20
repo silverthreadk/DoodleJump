@@ -76,6 +76,7 @@ void Game::loadResource() {
     texture_holder->load(Textures::BACKGROUND, RESOURCE_PATH + "images/background.png");
     texture_holder->load(Textures::GRASS, RESOURCE_PATH + "images/grass.png");
     texture_holder->load(Textures::STONE, RESOURCE_PATH + "images/stone.png");
+    texture_holder->load(Textures::EARTH, RESOURCE_PATH + "images/earth.png");
     texture_holder->load(Textures::DOODLE, RESOURCE_PATH + "images/doodle.png");
 
     FontHolder* font_holder = FontHolder::getInstance();
