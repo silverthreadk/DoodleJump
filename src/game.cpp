@@ -12,6 +12,7 @@
 #include "platform.h"
 #include "grass.h"
 #include "stone.h"
+#include "earth.h"
 #include "player.h"
 #include "score_board.h"
 #include "life_board.h"
@@ -98,14 +99,17 @@ void Game::initializePlatform() {
     landscape_ = new Landscape();
 
     SpawnerFor<Grass> grass_spawner;
-    for (int i = 0; i < 10; i++) {
-        std::shared_ptr<Platform> platform = grass_spawner.spawnPlatform();
-        landscape_->addObserver(platform);
+    for (int i = 0; i < 10; ++i) {
+        landscape_->addObserver(grass_spawner.spawnPlatform());
+    }
+
+    SpawnerFor<Earth> earth_spawner;
+    for (int i = 0; i < 3; ++i) {
+        landscape_->addObserver(earth_spawner.spawnPlatform());
     }
 
     SpawnerFor<Stone> stone_spawner;
-    std::shared_ptr<Platform> platform = stone_spawner.spawnPlatform();
-    landscape_->addObserver(platform);
+    landscape_->addObserver(stone_spawner.spawnPlatform());
 }
 
 void Game::layout() {
