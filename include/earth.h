@@ -9,7 +9,6 @@ class Earth : public Platform {
  public:
     Earth();
     ~Earth();
-    void initialize();
     void update(Player* player);
     void fallen(Player* player);
 };

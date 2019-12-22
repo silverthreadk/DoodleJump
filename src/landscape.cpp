@@ -2,8 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "platform.h"
 #include "player.h"
+#include "grass.h"
 
 void Subject::addObserver(std::shared_ptr<Observer> observer) {
     observers_.push_back(observer);
@@ -35,7 +35,7 @@ Landscape::Landscape() {
 }
 
 Landscape::~Landscape() {
-    Platform::clearTopPlatform();
+    Grass::clearTopGrass();
 }
 
 void Landscape::onUpdate(Player* player) {
