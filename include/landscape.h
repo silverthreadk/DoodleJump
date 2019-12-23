@@ -20,6 +20,7 @@ class Subject {
 
  protected:
     void update(Player* player);
+    void move(Player* player);
     void fallen(Player* player);
     void draw(sf::RenderWindow* app);
 
@@ -32,6 +33,7 @@ class Landscape : public Subject {
     Landscape();
     ~Landscape();
     void onUpdate(Player* player);
+    void onMove(Player* player);
     void onFallen(Player* player);
     void onDraw(sf::RenderWindow* app);
 };

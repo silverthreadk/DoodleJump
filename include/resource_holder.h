@@ -12,7 +12,7 @@ namespace sf {
 }
 
 namespace Textures {
-    enum ID { BACKGROUND, GRASS, STONE, EARTH, DOODLE };
+    enum ID { BACKGROUND, GRASS, STONE, EARTH, ICE, DOODLE };
 }
 
 namespace Fonts {

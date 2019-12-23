@@ -10,18 +10,20 @@ class Observer : public Entity {
     explicit Observer(sf::Texture* texture) : Entity(texture) {}
     virtual ~Observer() {}
     virtual void initialize() = 0;
+    virtual void move(Player* player) = 0;
     virtual void update(Player* player) = 0;
     virtual void fallen(Player* player) = 0;
 };
 
 class Platform : public Observer {
  public:
-    enum PLATFORM_TYPE { GRASS, STONE, EARTH };
+    enum PLATFORM_TYPE { GRASS, STONE, EARTH, ICE };
 
     Platform(sf::Texture* texture, PLATFORM_TYPE type, const int velocity);
     ~Platform();
     void initialize();
     void update(Player* player);
+    void move(Player* player) {}
     void fallen(Player* player);
 
  protected:

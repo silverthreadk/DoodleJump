@@ -13,6 +13,7 @@
 #include "grass.h"
 #include "stone.h"
 #include "earth.h"
+#include "ice.h"
 #include "player.h"
 #include "score_board.h"
 #include "life_board.h"
@@ -78,6 +79,7 @@ void Game::loadResource() {
     texture_holder->load(Textures::GRASS, RESOURCE_PATH + "images/grass.png");
     texture_holder->load(Textures::STONE, RESOURCE_PATH + "images/stone.png");
     texture_holder->load(Textures::EARTH, RESOURCE_PATH + "images/earth.png");
+    texture_holder->load(Textures::ICE, RESOURCE_PATH + "images/ice.png");
     texture_holder->load(Textures::DOODLE, RESOURCE_PATH + "images/doodle.png");
 
     FontHolder* font_holder = FontHolder::getInstance();
@@ -110,6 +112,9 @@ void Game::initializePlatform() {
 
     SpawnerFor<Stone> stone_spawner;
     landscape_->addObserver(stone_spawner.spawnPlatform());
+
+    SpawnerFor<Ice> ice_spawner;
+    landscape_->addObserver(ice_spawner.spawnPlatform());
 }
 
 void Game::layout() {
@@ -124,6 +129,7 @@ void Game::layout() {
 
         landscape_->onUpdate(player_);
     }
+    landscape_->onMove(player_);
     landscape_->onFallen(player_);
 }
 
