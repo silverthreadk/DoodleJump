@@ -6,6 +6,10 @@ void StartCommand::execute(Player* player) {
     player->restart();
 }
 
+void CloseCommand::execute(Player* player) {
+    player->close();
+}
+
 void LeftCommand::execute(Player* player) {
     player->moveToLeft();
 }

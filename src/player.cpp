@@ -20,6 +20,10 @@ void Player::restart() {
     initialize();
 }
 
+void Player::close() {
+    game_.close();
+}
+
 void Player::initialize() {
     horizontal_padding_ = 20;
     lives_ = 3;

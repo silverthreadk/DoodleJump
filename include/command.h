@@ -14,6 +14,11 @@ class StartCommand : public Command {
     void execute(Player* player);
 };
 
+class CloseCommand : public Command {
+ public:
+    void execute(Player* player);
+};
+
 class LeftCommand : public Command {
  public:
     void execute(Player* player);

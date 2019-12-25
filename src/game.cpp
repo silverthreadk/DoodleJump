@@ -66,6 +66,10 @@ void Game::run() {
     }
 }
 
+void Game::close() {
+    app_.close();
+}
+
 void Game::handleInput() {
     Command* command = input_handler_->handleInput();
     if (!command) return;

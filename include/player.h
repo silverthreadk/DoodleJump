@@ -10,6 +10,7 @@ class Player : public Entity {
     Player(Game& game);
     ~Player();
     void restart();
+    void close();
     void moveToLeft();
     void moveToRight();
     void drop();

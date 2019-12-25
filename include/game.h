@@ -17,6 +17,7 @@ class Game {
     ~Game();
     void initialize();
     void run();
+    void close();
     bool isPlaying() const { return state_ == PLAYING; }
     void gameOver() { state_ = GAME_OVER; }
 

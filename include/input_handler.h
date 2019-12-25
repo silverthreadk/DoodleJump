@@ -10,6 +10,7 @@ class InputHandler {
 
  private:
     Command* key_enter_;
+    Command* key_esc_;
     Command* key_left_;
     Command* key_right_;
 };
