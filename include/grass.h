@@ -1,20 +1,23 @@
 #ifndef GRASS_H_
 #define GRASS_H_
 
+#include <memory>
+
 #include "platform.h"
 
 class Player;
 
 class Grass : public Platform {
  public:
+    static std::shared_ptr<Platform> create();
     static void clearTopGrass() { top_ = nullptr; }
-
-    Grass();
     ~Grass();
     void initialize();
     void update(Player* player);
 
  private:
+    Grass();
+
     static Grass* top_;
 };
 

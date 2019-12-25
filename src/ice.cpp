@@ -6,8 +6,13 @@
 #include "resource_holder.h"
 #include "player.h"
 
+std::shared_ptr<Platform> Ice::create() {
+    std::shared_ptr<Platform> platform(new Ice);
+    platform->initialize();
+    return platform;
+}
+
 Ice::Ice() : Platform(&TextureHolder::getInstance()->get(Textures::ICE), PLATFORM_TYPE::ICE, -10), direction(1) {
-    initialize();
 }
 
 Ice::~Ice() {

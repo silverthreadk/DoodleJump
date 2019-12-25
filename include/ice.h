@@ -1,17 +1,21 @@
 #ifndef ICE_H_
 #define ICE_H_
 
+#include <memory>
+
 #include "platform.h"
 
 class Player;
 
 class Ice : public Platform {
  public:
-    Ice();
+    static std::shared_ptr<Platform> create();
     ~Ice();
     void move(Player* player);
 
-private:
+ private:
+    Ice();
+
     int direction;
 };
 

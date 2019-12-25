@@ -15,7 +15,7 @@ class Spawner {
 template <class T>
 class SpawnerFor : public Spawner {
  public:
-    std::shared_ptr<Platform> spawnPlatform() { return std::make_shared<T>(); }
+    std::shared_ptr<Platform> spawnPlatform() { return T::create(); }
 };
 
 #endif  // SPAWNER_H_

@@ -8,7 +8,6 @@
 Platform::Platform(sf::Texture* texture, PLATFORM_TYPE type, const int velocity) : Observer(texture),
     type_(type),
     velocity_(velocity) {
-    initialize();
 }
 
 Platform::~Platform() {

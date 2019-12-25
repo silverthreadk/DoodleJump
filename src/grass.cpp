@@ -8,8 +8,13 @@
 
 Grass* Grass::top_;
 
+std::shared_ptr<Platform> Grass::create() {
+    std::shared_ptr<Platform> platform(new Grass);
+    platform->initialize();
+    return platform;
+}
+
 Grass::Grass() : Platform(&TextureHolder::getInstance()->get(Textures::GRASS), PLATFORM_TYPE::GRASS, -10) {
-    initialize();
 }
 
 Grass::~Grass() {

@@ -6,8 +6,13 @@
 #include "resource_holder.h"
 #include "player.h"
 
+std::shared_ptr<Platform> Earth::create() {
+    std::shared_ptr<Platform> platform(new Earth);
+    platform->initialize();
+    return platform;
+}
+
 Earth::Earth() : Platform(&TextureHolder::getInstance()->get(Textures::EARTH), PLATFORM_TYPE::EARTH, 0) {
-    initialize();
 }
 
 Earth::~Earth() {
