@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "config.h"
+
 Entity::Entity(sf::Texture* texture) : sprite_(new sf::Sprite(*texture)),
     x_(0),
     y_(0),
@@ -44,4 +46,12 @@ int Entity::getWidth() const {
 
 int Entity::getHeight() const {
     return sprite_->getLocalBounds().height;
+}
+
+int Entity::getMaxX() const {
+    return kScreenWidth - getWidth();
+}
+
+int Entity::getMaxY() const {
+    return kScreenWidth - getHeight();
 }

@@ -33,7 +33,7 @@ void Player::initialize() {
 }
 
 void Player::initializeLocation() {
-    x_ = (kScreenWidth - getWidth()) / 2;
+    x_ = getMaxX() / 2;
     y_ = kJumpHeight;
     velocity_ = 0;
     dy_ = 0;
@@ -46,7 +46,7 @@ void Player::moveToLeft() {
 
 void Player::moveToRight() {
     x_ += 3;
-    x_ = std::min(x_, kScreenWidth - getWidth());
+    x_ = std::min(x_, getMaxX());
 }
 
 void Player::drop() {

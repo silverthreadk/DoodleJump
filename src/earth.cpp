@@ -22,7 +22,7 @@ void Earth::update(Player* player) {
     y_ = y_ - player->getVelocity();
     if (y_ > kScreenHeight) {
         y_ = std::min(-getHeight(), - rand() % kScreenHeight);
-        x_ = rand() % (kScreenWidth - getWidth());
+        x_ = rand() % getMaxX();
         sprite_->setColor(sf::Color::White);
     }
 }

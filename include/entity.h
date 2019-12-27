@@ -22,6 +22,8 @@ class Entity {
     int getRight() const;
     int getWidth() const;
     int getHeight() const;
+    int getMaxX() const;
+    int getMaxY() const;
 
     sf::Sprite* sprite_;
     int x_;

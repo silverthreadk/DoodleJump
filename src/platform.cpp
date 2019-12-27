@@ -14,15 +14,15 @@ Platform::~Platform() {
 }
 
 void Platform::initialize() {
-    x_ = rand() % (kScreenWidth - getWidth());
-    y_ = rand() % kScreenHeight;
+    x_ = rand() % getMaxX();
+    y_ = rand() % getMaxY();
 }
 
 void Platform::update(Player* player) {
     y_ = y_ - player->getVelocity();
     if (y_ > kScreenHeight) {
         y_ = std::min(-getHeight(), -rand() % kScreenHeight);
-        x_ = rand() % (kScreenWidth - getWidth());
+        x_ = rand() % getMaxX();
     }
 }
 
