@@ -73,12 +73,12 @@ bool Player::isLowestPoint() const {
     return y_ > kScreenHeight;
 }
 
-bool Player::isHighestPoint() {
-    if (y_ < kJumpHeight) {
-        y_ = kJumpHeight;
-        return true;
-    }
-    return false;
+bool Player::isHighestPoint() const {
+    return y_ < kJumpHeight;
+}
+
+void Player::keepJumpHeight() {
+    y_ = kJumpHeight;
 }
 
 void Player::addScore() {

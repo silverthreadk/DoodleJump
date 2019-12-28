@@ -17,7 +17,8 @@ class Player : public Entity {
     void jump(const int velocity);
     void revive();
     bool isLowestPoint() const;
-    bool isHighestPoint();
+    bool isHighestPoint() const;
+    void keepJumpHeight();
     void addScore();
     double getVelocity() const { return velocity_; }
     int getScore() const { return score_; }

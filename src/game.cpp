@@ -128,6 +128,7 @@ void Game::layout() {
         player_->revive();
         life_board_->update();
     } else if (player_->isHighestPoint()) {
+        player_->keepJumpHeight();
         player_->addScore();
         score_board_->update(player_->getScore());
 
