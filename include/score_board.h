@@ -3,9 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-class Landscape;
-class Player;
-class InputHandler;
 class Game;
 
 class ScoreBoard {
@@ -15,8 +12,11 @@ class ScoreBoard {
     void initialize();
     void update(int score);
     void draw(sf::RenderWindow* app);
+    void save();
 
  private:
+    void load();
+
     sf::Text score_text_;
     sf::Text high_score_text_;
     sf::Text game_over_text_;

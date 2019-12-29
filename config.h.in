@@ -1,7 +1,9 @@
 #include <string>
 
 const std::string RESOURCE_PATH = "@RESOURCE_PATH@/";
+const std::string SAVE_PATH = "save.dat";
 const int kScreenWidth = 400;
 const int kScreenHeight = 533;
+const int kJumpHeight = 200;
 const int kMaxDifficultyLevel = 6;
 const int kIntialFrameRate = 60;

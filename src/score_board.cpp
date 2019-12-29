@@ -1,8 +1,11 @@
 #include "score_board.h"
 
 #include <string>
+#include <fstream>
+#include <iostream>
 
 #include "game.h"
+#include "config.h"
 #include "resource_holder.h"
 
 static void initilazeText(sf::Font* font, int font_size, sf::Text* text) {
@@ -32,6 +35,7 @@ ScoreBoard::ScoreBoard(sf::RenderWindow* app, Game& game) :
     initilazeText(font, 20, &score_text_);
     score_text_.setPosition(10, 10);
     initialize();
+    load();
 }
 
 ScoreBoard::~ScoreBoard() {
@@ -53,4 +57,23 @@ void ScoreBoard::draw(sf::RenderWindow* app) {
     if (game_.isPlaying()) return;
     app->draw(game_over_text_);
     app->draw(high_score_text_);
+}
+
+void ScoreBoard::save() {
+    std::ofstream write_file(SAVE_PATH);
+    if (write_file.is_open()) {
+        write_file << std::to_string(high_score_);
+        write_file.close();
+    }
+}
+
+void ScoreBoard::load() {
+    std::ifstream open_file(SAVE_PATH);
+    if (open_file.is_open()) {
+        std::string line;
+        while (getline(open_file, line)) {
+            high_score_ = std::max(high_score_, stoi(line));
+        }
+        open_file.close();
+    }
 }

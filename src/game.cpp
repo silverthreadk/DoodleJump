@@ -51,7 +51,7 @@ void Game::run() {
         sf::Event e;
         while (app_.pollEvent(e)) {
             if (e.type == sf::Event::Closed)
-                app_.close();
+                close();
         }
 
         if (e.type != sf::Event::LostFocus) {
@@ -67,6 +67,7 @@ void Game::run() {
 }
 
 void Game::close() {
+    score_board_->save();
     app_.close();
 }
 
