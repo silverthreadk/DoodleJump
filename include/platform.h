@@ -17,7 +17,7 @@ class Observer : public Entity {
 
 class Platform : public Observer {
  public:
-    enum PLATFORM_TYPE { GRASS, STONE, EARTH, ICE };
+    enum PLATFORM_TYPE { GRASS, STONE, CLOUD, EARTH, ICE };
 
     ~Platform();
     void initialize();

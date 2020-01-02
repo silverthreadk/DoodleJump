@@ -12,6 +12,7 @@
 #include "platform.h"
 #include "grass.h"
 #include "stone.h"
+#include "cloud.h"
 #include "earth.h"
 #include "ice.h"
 #include "player.h"
@@ -83,6 +84,7 @@ void Game::loadResource() {
     texture_holder->load(Textures::BACKGROUND, RESOURCE_PATH + "images/background.png");
     texture_holder->load(Textures::GRASS, RESOURCE_PATH + "images/grass.png");
     texture_holder->load(Textures::STONE, RESOURCE_PATH + "images/stone.png");
+    texture_holder->load(Textures::CLOUD, RESOURCE_PATH + "images/cloud.png");
     texture_holder->load(Textures::EARTH, RESOURCE_PATH + "images/earth.png");
     texture_holder->load(Textures::ICE, RESOURCE_PATH + "images/ice.png");
     texture_holder->load(Textures::DOODLE, RESOURCE_PATH + "images/doodle.png");
@@ -113,6 +115,11 @@ void Game::initializePlatform() {
     SpawnerFor<Earth> earth_spawner;
     for (int i = 0; i < 3; ++i) {
         landscape_->addObserver(earth_spawner.spawnPlatform());
+    }
+
+    SpawnerFor<Cloud> cloud_spawner;
+    for (int i = 0; i < 3; ++i) {
+        landscape_->addObserver(cloud_spawner.spawnPlatform());
     }
 
     SpawnerFor<Stone> stone_spawner;
