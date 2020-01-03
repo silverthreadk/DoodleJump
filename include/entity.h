@@ -13,6 +13,7 @@ class Entity {
     Entity(sf::Texture* texture, const int x, const int y);
     virtual ~Entity();
     virtual void draw(sf::RenderWindow* app);
+    void setHidden(const bool hidden);
     bool isIntersecting(Entity* entity) const;
 
  protected:

@@ -23,13 +23,13 @@ void Earth::update(Player* player) {
     if (y_ > kScreenHeight) {
         y_ = std::min(-getHeight(), - rand() % kScreenHeight);
         x_ = rand() % getMaxX();
-        sprite_->setColor(sf::Color::White);
+        setHidden(false);
     }
 }
 
 void Earth::fallen(Player* player) {
     if ((player->getVelocity() > 0)
         && isIntersecting(player)) {
-        sprite_->setColor(sf::Color::Transparent);
+        setHidden(true);
     }
 }

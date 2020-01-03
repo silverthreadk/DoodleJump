@@ -23,7 +23,7 @@ void Cloud::update(Player* player) {
     if (y_ > kScreenHeight) {
         y_ = std::min(-getHeight(), - rand() % kScreenHeight);
         x_ = rand() % getMaxX();
-        sprite_->setColor(sf::Color::White);
+        setHidden(false);
     }
 }
 
@@ -31,6 +31,6 @@ void Cloud::fallen(Player* player) {
     if ((player->getVelocity() > 0)
         && isIntersecting(player)) {
         player->jump(velocity_);
-        sprite_->setColor(sf::Color::Transparent);
+        setHidden(true);
     }
 }

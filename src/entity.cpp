@@ -25,6 +25,11 @@ void Entity::draw(sf::RenderWindow* app) {
     app->draw(*sprite_);
 }
 
+void Entity::setHidden(const bool hidden) {
+    if (hidden) sprite_->setColor(sf::Color::Transparent);
+    else sprite_->setColor(sf::Color::White);
+}
+
 bool Entity::isIntersecting(Entity* entity) const {
     return (entity->getRight() - entity->horizontal_padding_ > getLeft())
         && (entity->getLeft() + entity->horizontal_padding_ < getRight())
