@@ -30,6 +30,10 @@ void Entity::setHidden(const bool hidden) {
     else sprite_->setColor(sf::Color::White);
 }
 
+bool Entity::isHidden() const {
+    return sprite_->getColor() == sf::Color::Transparent;
+}
+
 bool Entity::isIntersecting(Entity* entity) const {
     return (entity->getRight() - entity->horizontal_padding_ > getLeft())
         && (entity->getLeft() + entity->horizontal_padding_ < getRight())

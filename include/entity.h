@@ -14,6 +14,7 @@ class Entity {
     virtual ~Entity();
     virtual void draw(sf::RenderWindow* app);
     void setHidden(const bool hidden);
+    bool isHidden() const;
     bool isIntersecting(Entity* entity) const;
 
  protected:

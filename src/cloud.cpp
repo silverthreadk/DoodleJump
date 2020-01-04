@@ -29,7 +29,8 @@ void Cloud::update(Player* player) {
 
 void Cloud::fallen(Player* player) {
     if ((player->getVelocity() > 0)
-        && isIntersecting(player)) {
+        && isIntersecting(player)
+        && !isHidden()) {
         player->jump(velocity_);
         setHidden(true);
     }
