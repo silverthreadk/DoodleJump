@@ -4,14 +4,7 @@
 #include <resource_holder.h>
 #include <config.h>
 
-LifeBoard::LifeBoard(const int lives) : num_of_lives_(lives) {
-    initialize();
-}
-
-LifeBoard::~LifeBoard() {
-}
-
-void LifeBoard::initialize() {
+LifeBoard::LifeBoard(const int lives) : num_of_lives_(lives), life_index_(lives - 1) {
     int x = kScreenWidth, y = 10;
     sf::Texture& texture = TextureHolder::getInstance()->get(Textures::DOODLE);
     for (int i = 0; i < num_of_lives_; ++i) {
@@ -20,9 +13,18 @@ void LifeBoard::initialize() {
     }
 }
 
+LifeBoard::~LifeBoard() {
+}
+
+void LifeBoard::initialize() {
+    for (auto& life : lives_) {
+        life->setHidden(false);
+    }
+}
+
 void LifeBoard::update() {
-    if (lives_.empty()) return;
-    lives_.pop_back();
+    if (life_index_ < 0) return;
+    lives_[life_index_--]->setHidden(true);
 }
 
 void LifeBoard::draw(sf::RenderWindow* app) {

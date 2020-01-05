@@ -19,6 +19,7 @@ class LifeBoard {
  private:
     std::vector<std::shared_ptr<Life> > lives_;
     int num_of_lives_;
+    int life_index_;
 };
 
 #endif  // LIFE_BOARD_H_
