@@ -23,6 +23,7 @@ void Platform::update(Player* player) {
     if (y_ > kScreenHeight) {
         y_ = std::min(-getHeight(), -rand() % kScreenHeight);
         x_ = rand() % getMaxX();
+        setHidden(false);
     }
 }
 

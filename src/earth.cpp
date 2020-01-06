@@ -18,15 +18,6 @@ Earth::Earth() : Platform(&TextureHolder::getInstance()->get(Textures::EARTH), P
 Earth::~Earth() {
 }
 
-void Earth::update(Player* player) {
-    y_ = y_ - player->getVelocity();
-    if (y_ > kScreenHeight) {
-        y_ = std::min(-getHeight(), - rand() % kScreenHeight);
-        x_ = rand() % getMaxX();
-        setHidden(false);
-    }
-}
-
 void Earth::fallen(Player* player) {
     if ((player->getVelocity() > 0)
         && isIntersecting(player)) {

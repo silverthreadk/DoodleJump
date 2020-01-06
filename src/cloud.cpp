@@ -18,15 +18,6 @@ Cloud::Cloud() : Platform(&TextureHolder::getInstance()->get(Textures::CLOUD), P
 Cloud::~Cloud() {
 }
 
-void Cloud::update(Player* player) {
-    y_ = y_ - player->getVelocity();
-    if (y_ > kScreenHeight) {
-        y_ = std::min(-getHeight(), - rand() % kScreenHeight);
-        x_ = rand() % getMaxX();
-        setHidden(false);
-    }
-}
-
 void Cloud::fallen(Player* player) {
     if ((player->getVelocity() > 0)
         && isIntersecting(player)
