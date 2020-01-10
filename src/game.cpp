@@ -32,11 +32,12 @@ Game::Game() : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
 
     app_.setFramerateLimit(kIntialFrameRate);
 
+    landscape_ = new Landscape();
     player_ = new Player(*this);
     score_board_ = new ScoreBoard(&app_, *this);
     life_board_ = new LifeBoard(player_->getLives());
 
-    initializePlatform();
+    createPlatform();
 }
 
 Game::~Game() {
@@ -95,7 +96,8 @@ void Game::loadResource() {
 
 void Game::initialize() {
     if (state_ != GAME_OVER) return;
-    initializePlatform();
+
+    landscape_->onInitialize();
     score_board_->initialize();
     life_board_->initialize();
 
@@ -103,10 +105,7 @@ void Game::initialize() {
     difficulty_level_ = 0;
 }
 
-void Game::initializePlatform() {
-    if (landscape_) delete landscape_;
-    landscape_ = new Landscape();
-
+void Game::createPlatform() {
     SpawnerFor<Grass> grass_spawner;
     for (int i = 0; i < 10; ++i) {
         landscape_->addObserver(grass_spawner.spawnPlatform());

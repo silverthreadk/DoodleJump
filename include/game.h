@@ -23,7 +23,7 @@ class Game {
 
  private:
     void loadResource();
-    void initializePlatform();
+    void createPlatform();
     void handleInput();
     void layout();
     void draw();

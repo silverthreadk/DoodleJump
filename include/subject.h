@@ -19,6 +19,7 @@ class Subject {
     void removeObserver(std::shared_ptr<Observer> observer);
 
  protected:
+    void initialize();
     void update(Player* player);
     void move(Player* player);
     void fallen(Player* player);

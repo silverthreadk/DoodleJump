@@ -13,6 +13,12 @@ void Subject::removeObserver(std::shared_ptr<Observer> observer) {
     observers_.remove(observer);
 }
 
+void Subject::initialize() {
+    for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
+        (*observer)->initialize();
+    }
+}
+
 void Subject::update(Player* player) {
     for (auto observer = observers_.begin(); observer != observers_.end(); ++observer) {
         (*observer)->update(player);

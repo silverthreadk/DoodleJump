@@ -7,6 +7,7 @@ class Landscape : public Subject {
  public:
     Landscape();
     ~Landscape();
+    void onInitialize();
     void onUpdate(Player* player);
     void onMove(Player* player);
     void onFallen(Player* player);

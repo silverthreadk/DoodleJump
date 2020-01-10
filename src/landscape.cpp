@@ -8,7 +8,11 @@ Landscape::Landscape() {
 }
 
 Landscape::~Landscape() {
+}
+
+void Landscape::onInitialize() {
     Grass::clearTopGrass();
+    initialize();
 }
 
 void Landscape::onUpdate(Player* player) {
