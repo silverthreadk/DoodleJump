@@ -29,7 +29,7 @@ void Platform::update(Player* player) {
 
 void Platform::fallen(Player* player) {
     if ((player->getVelocity() > 0)
-        && isIntersecting(player)) {
+        && isOverlappedToBottom(player)) {
         player->jump(velocity_);
     }
 }

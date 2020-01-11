@@ -81,6 +81,10 @@ void Player::keepJumpHeight() {
     y_ = kJumpHeight;
 }
 
+void Player::earnCoin() {
+    score_ += 10;
+}
+
 void Player::addScore() {
     if (dy_ < 100) return;
 

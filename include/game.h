@@ -24,6 +24,7 @@ class Game {
  private:
     void loadResource();
     void createPlatform();
+    void createCoin();
     void handleInput();
     void layout();
     void draw();

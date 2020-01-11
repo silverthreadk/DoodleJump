@@ -34,7 +34,14 @@ bool Entity::isHidden() const {
     return sprite_->getColor() == sf::Color::Transparent;
 }
 
-bool Entity::isIntersecting(Entity* entity) const {
+bool Entity::isOverlapped(Entity* entity) const {
+    return (entity->getRight() - entity->horizontal_padding_ > getLeft())
+        && (entity->getLeft() + entity->horizontal_padding_ < getRight())
+        && (entity->getBottom() > getTop())
+        && (entity->getTop() < getBottom());
+}
+
+bool Entity::isOverlappedToBottom(Entity* entity) const {
     return (entity->getRight() - entity->horizontal_padding_ > getLeft())
         && (entity->getLeft() + entity->horizontal_padding_ < getRight())
         && (entity->getBottom() > getTop())
@@ -62,5 +69,5 @@ int Entity::getMaxX() const {
 }
 
 int Entity::getMaxY() const {
-    return kScreenWidth - getHeight();
+    return kScreenHeight - getHeight();
 }

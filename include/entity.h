@@ -15,7 +15,8 @@ class Entity {
     virtual void draw(sf::RenderWindow* app);
     void setHidden(const bool hidden);
     bool isHidden() const;
-    bool isIntersecting(Entity* entity) const;
+    bool isOverlapped(Entity* entity) const;
+    bool isOverlappedToBottom(Entity* entity) const;
 
  protected:
     int getLeft() const { return x_; }

@@ -15,6 +15,7 @@
 #include "cloud.h"
 #include "earth.h"
 #include "ice.h"
+#include "coin.h"
 #include "player.h"
 #include "score_board.h"
 #include "life_board.h"
@@ -38,6 +39,7 @@ Game::Game() : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
     life_board_ = new LifeBoard(player_->getLives());
 
     createPlatform();
+    createCoin();
 }
 
 Game::~Game() {
@@ -88,6 +90,7 @@ void Game::loadResource() {
     texture_holder->load(Textures::CLOUD, RESOURCE_PATH + "images/cloud.png");
     texture_holder->load(Textures::EARTH, RESOURCE_PATH + "images/earth.png");
     texture_holder->load(Textures::ICE, RESOURCE_PATH + "images/ice.png");
+    texture_holder->load(Textures::COIN, RESOURCE_PATH + "images/coin.png");
     texture_holder->load(Textures::DOODLE, RESOURCE_PATH + "images/doodle.png");
 
     FontHolder* font_holder = FontHolder::getInstance();
@@ -128,6 +131,12 @@ void Game::createPlatform() {
     landscape_->addObserver(ice_spawner.spawnPlatform());
 }
 
+void Game::createCoin() {
+    for (int i = 0; i < 5; ++i) {
+        landscape_->addObserver(std::make_shared<Coin>());
+    }
+}
+
 void Game::layout() {
     player_->drop();
 
@@ -137,12 +146,12 @@ void Game::layout() {
     } else if (player_->isHighestPoint()) {
         player_->keepJumpHeight();
         player_->addScore();
-        score_board_->update(player_->getScore());
 
         landscape_->onUpdate(player_);
     }
     landscape_->onMove(player_);
     landscape_->onFallen(player_);
+    score_board_->update(player_->getScore());
 }
 
 void Game::draw() {

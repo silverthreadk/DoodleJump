@@ -20,7 +20,7 @@ Earth::~Earth() {
 
 void Earth::fallen(Player* player) {
     if ((player->getVelocity() > 0)
-        && isIntersecting(player)) {
+        && isOverlappedToBottom(player)) {
         setHidden(true);
     }
 }
