@@ -2,7 +2,7 @@
 Doodle Jump is a platform jumping game.
 The project was formerly referred by https://www.youtube.com/channel/UCC7qpnId5RIQruKDJOt2exw
 
-<img src="resource/images/game.gif">
+<img src="resource/images/gameplay.gif">
 
 ## Getting Started
 
