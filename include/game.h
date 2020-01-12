@@ -18,8 +18,8 @@ class Game {
     void initialize();
     void run();
     void close();
-    bool isPlaying() const { return state_ == PLAYING; }
     void gameOver() { state_ = GAME_OVER; }
+    bool isPlaying() const { return state_ == PLAYING; }
 
  private:
     void loadResource();
@@ -31,9 +31,7 @@ class Game {
     void adjustDifficultyLevel();
 
     sf::RenderWindow app_;
-
     sf::Sprite background_sprite_;
-
     GameState state_;
     Landscape* landscape_;
     Player* player_;

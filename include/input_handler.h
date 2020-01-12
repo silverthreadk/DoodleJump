@@ -6,7 +6,7 @@ class InputHandler {
  public:
     InputHandler();
     ~InputHandler();
-    Command* handleInput();
+    Command* handleInput() const;
 
  private:
     Command* key_enter_;

@@ -24,21 +24,6 @@ void Player::close() {
     game_.close();
 }
 
-void Player::initialize() {
-    horizontal_padding_ = 20;
-    lives_ = 3;
-    score_ = 0;
-
-    initializeLocation();
-}
-
-void Player::initializeLocation() {
-    x_ = getMaxX() / 2;
-    y_ = kJumpHeight;
-    velocity_ = 0;
-    dy_ = 0;
-}
-
 void Player::moveToLeft() {
     x_ -= 3;
     x_ = std::max(x_, 0);
@@ -90,4 +75,19 @@ void Player::addScore() {
 
     score_ += 10;
     dy_ -= 100;
+}
+
+void Player::initialize() {
+    horizontal_padding_ = 20;
+    lives_ = 3;
+    score_ = 0;
+
+    initializeLocation();
+}
+
+void Player::initializeLocation() {
+    x_ = getMaxX() / 2;
+    y_ = kJumpHeight;
+    velocity_ = 0;
+    dy_ = 0;
 }

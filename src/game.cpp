@@ -50,6 +50,17 @@ Game::~Game() {
     delete input_handler_;
 }
 
+void Game::initialize() {
+    if (state_ != GAME_OVER) return;
+
+    landscape_->onInitialize();
+    score_board_->initialize();
+    life_board_->initialize();
+
+    state_ = PLAYING;
+    difficulty_level_ = 0;
+}
+
 void Game::run() {
     while (app_.isOpen()) {
         sf::Event e;
@@ -75,13 +86,6 @@ void Game::close() {
     app_.close();
 }
 
-void Game::handleInput() {
-    Command* command = input_handler_->handleInput();
-    if (!command) return;
-
-    command->execute(player_);
-}
-
 void Game::loadResource() {
     TextureHolder* texture_holder = TextureHolder::getInstance();
     texture_holder->load(Textures::BACKGROUND, RESOURCE_PATH + "images/background.png");
@@ -95,17 +99,6 @@ void Game::loadResource() {
 
     FontHolder* font_holder = FontHolder::getInstance();
     font_holder->load(Fonts::MAIN, RESOURCE_PATH + "fonts/nanumgothic.ttf");
-}
-
-void Game::initialize() {
-    if (state_ != GAME_OVER) return;
-
-    landscape_->onInitialize();
-    score_board_->initialize();
-    life_board_->initialize();
-
-    state_ = PLAYING;
-    difficulty_level_ = 0;
 }
 
 void Game::createPlatform() {
@@ -135,6 +128,13 @@ void Game::createCoin() {
     for (int i = 0; i < 5; ++i) {
         landscape_->addObserver(std::make_shared<Coin>());
     }
+}
+
+void Game::handleInput() {
+    Command* command = input_handler_->handleInput();
+    if (!command) return;
+
+    command->execute(player_);
 }
 
 void Game::layout() {

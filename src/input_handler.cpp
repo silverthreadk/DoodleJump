@@ -17,7 +17,7 @@ InputHandler::~InputHandler() {
     delete key_right_;
 }
 
-Command* InputHandler::handleInput() {
+Command* InputHandler::handleInput() const {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) return key_enter_;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) return key_esc_;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) return key_left_;

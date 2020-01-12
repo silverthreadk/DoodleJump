@@ -2,9 +2,9 @@
 #define ENTITY_H_
 
 namespace sf {
-class RenderWindow;
-class Sprite;
-class Texture;
+    class RenderWindow;
+    class Sprite;
+    class Texture;
 }
 
 class Entity {
@@ -21,8 +21,8 @@ class Entity {
  protected:
     int getLeft() const { return x_; }
     int getTop() const { return y_; }
-    int getBottom() const;
     int getRight() const;
+    int getBottom() const;
     int getWidth() const;
     int getHeight() const;
     int getMaxX() const;

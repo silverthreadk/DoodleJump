@@ -8,7 +8,7 @@ class Observer;
 class Player;
 
 namespace sf {
-class RenderWindow;
+    class RenderWindow;
 }
 
 class Subject {
