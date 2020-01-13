@@ -4,10 +4,10 @@
 #include <resource_holder.h>
 #include <config.h>
 
-LifeBoard::LifeBoard(const int lives) : num_of_lives_(lives), life_index_(lives - 1) {
+LifeBoard::LifeBoard() : life_index_(kNumberOfLife - 1) {
     int x = kScreenWidth, y = 10;
     sf::Texture& texture = TextureHolder::getInstance()->get(Textures::DOODLE);
-    for (int i = 0; i < num_of_lives_; ++i) {
+    for (int i = 0; i < kNumberOfLife; ++i) {
         x = x - texture.getSize().x / 2 - 5;
         lives_.push_back(std::make_shared<Life>(&texture, x, y));
     }
@@ -17,6 +17,7 @@ LifeBoard::~LifeBoard() {
 }
 
 void LifeBoard::initialize() {
+    life_index_ = kNumberOfLife - 1;
     for (auto& life : lives_) {
         life->setHidden(false);
     }

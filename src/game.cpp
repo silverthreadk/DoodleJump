@@ -36,7 +36,7 @@ Game::Game() : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
     landscape_ = new Landscape();
     player_ = new Player(*this);
     score_board_ = new ScoreBoard(&app_, *this);
-    life_board_ = new LifeBoard(player_->getLives());
+    life_board_ = new LifeBoard();
 
     createPlatform();
     createCoin();

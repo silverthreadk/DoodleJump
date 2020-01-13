@@ -79,7 +79,7 @@ void Player::addScore() {
 
 void Player::initialize() {
     horizontal_padding_ = 20;
-    lives_ = 3;
+    lives_ = kNumberOfLife;
     score_ = 0;
 
     initializeLocation();

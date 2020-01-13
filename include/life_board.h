@@ -10,7 +10,7 @@ class Life;
 
 class LifeBoard {
  public:
-    LifeBoard(const int lives);
+    LifeBoard();
     ~LifeBoard();
     void initialize();
     void update();
@@ -18,7 +18,6 @@ class LifeBoard {
 
  private:
     std::vector<std::shared_ptr<Life> > lives_;
-    int num_of_lives_;
     int life_index_;
 };
 
