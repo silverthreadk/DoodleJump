@@ -3,14 +3,14 @@
 
 #include <SFML/Graphics.hpp>
 
-class Game;
+class Player;
 
 class ScoreBoard {
  public:
-    ScoreBoard(sf::RenderWindow* app, Game& game);
+    ScoreBoard();
     ~ScoreBoard();
     void initialize();
-    void update(int score);
+    void update(Player* player);
     void draw(sf::RenderWindow* app);
     void save();
 
@@ -20,8 +20,6 @@ class ScoreBoard {
     sf::Text score_text_;
     sf::Text high_score_text_;
     sf::Text game_over_text_;
-
-    Game& game_;
     int high_score_;
 };
 

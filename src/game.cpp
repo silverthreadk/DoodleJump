@@ -35,7 +35,7 @@ Game::Game() : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
 
     landscape_ = new Landscape();
     player_ = new Player(*this);
-    score_board_ = new ScoreBoard(&app_, *this);
+    score_board_ = new ScoreBoard();
     life_board_ = new LifeBoard();
 
     createPlatform();
@@ -151,7 +151,7 @@ void Game::layout() {
     }
     landscape_->onMove(player_);
     landscape_->onFallen(player_);
-    score_board_->update(player_->getScore());
+    score_board_->update(player_);
 }
 
 void Game::draw() {
