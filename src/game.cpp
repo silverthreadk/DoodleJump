@@ -145,7 +145,6 @@ void Game::layout() {
         life_board_->update();
     } else if (player_->isHighestPoint()) {
         player_->keepJumpHeight();
-        player_->addScore();
 
         landscape_->onUpdate(player_);
     }

@@ -20,7 +20,6 @@ class Player : public Entity {
     bool isHighestPoint() const;
     void keepJumpHeight();
     void earnCoin();
-    void addScore();
     double getVelocity() const { return velocity_; }
     int getScore() const { return score_; }
     int getLives() const { return lives_; }
@@ -31,7 +30,7 @@ class Player : public Entity {
 
     Game& game_;
     double velocity_;
-    int dy_;
+    int altitude_;
     int lives_;
     int score_;
 };

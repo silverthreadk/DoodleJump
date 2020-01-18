@@ -37,10 +37,11 @@ void Player::moveToRight() {
 void Player::drop() {
     velocity_ += 0.2;
     y_ += velocity_;
+    altitude_ += -velocity_;
+    score_ = std::max(score_, altitude_ / 10);
 }
 
 void Player::jump(const int velocity) {
-    dy_ = kScreenHeight - y_;
     velocity_ = velocity;
 }
 
@@ -52,6 +53,7 @@ void Player::revive() {
     }
 
     initializeLocation();
+    altitude_ += kScreenHeight - y_;
 }
 
 bool Player::isLowestPoint() const {
@@ -67,20 +69,14 @@ void Player::keepJumpHeight() {
 }
 
 void Player::earnCoin() {
-    score_ += 10;
-}
-
-void Player::addScore() {
-    if (dy_ < 100) return;
-
-    score_ += 10;
-    dy_ -= 100;
+    altitude_ += 100;
 }
 
 void Player::initialize() {
     horizontal_padding_ = 20;
     lives_ = kNumberOfLife;
     score_ = 0;
+    altitude_ = 0;
 
     initializeLocation();
 }
@@ -89,5 +85,4 @@ void Player::initializeLocation() {
     x_ = getMaxX() / 2;
     y_ = kJumpHeight;
     velocity_ = 0;
-    dy_ = 0;
 }
