@@ -27,10 +27,12 @@ class Player : public Entity {
  private:
     void initialize();
     void initializeLocation();
+    void calculateScore();
 
     Game& game_;
     double velocity_;
     int altitude_;
+    int coin_;
     int lives_;
     int score_;
 };

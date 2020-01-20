@@ -38,7 +38,8 @@ void Player::drop() {
     velocity_ += 0.2;
     y_ += velocity_;
     altitude_ += -velocity_;
-    score_ = std::max(score_, altitude_ / 10);
+
+    calculateScore();
 }
 
 void Player::jump(const int velocity) {
@@ -69,7 +70,7 @@ void Player::keepJumpHeight() {
 }
 
 void Player::earnCoin() {
-    altitude_ += 100;
+    coin_ += 1;
 }
 
 void Player::initialize() {
@@ -77,6 +78,7 @@ void Player::initialize() {
     lives_ = kNumberOfLife;
     score_ = 0;
     altitude_ = 0;
+    coin_ = 0;
 
     initializeLocation();
 }
@@ -85,4 +87,8 @@ void Player::initializeLocation() {
     x_ = getMaxX() / 2;
     y_ = kJumpHeight;
     velocity_ = 0;
+}
+
+void Player::calculateScore() {
+    score_ = std::max(score_, coin_ * 10 + altitude_ / 10);
 }
