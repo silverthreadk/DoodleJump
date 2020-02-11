@@ -155,8 +155,8 @@ void Game::layout() {
 
 void Game::draw() {
     app_.draw(background_sprite_);
-    player_->draw(&app_);
     landscape_->onDraw(&app_);
+    player_->draw(&app_);
     score_board_->draw(&app_);
     life_board_->draw(&app_);
 
