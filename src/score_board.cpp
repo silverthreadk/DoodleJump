@@ -15,20 +15,35 @@ static void initilazeText(sf::Font* font, int font_size, sf::Text* text) {
     text->setColor(sf::Color::Black);
 }
 
+static void alignText(std::vector<sf::Text*>& text_list) {
+    float text_height = 0;
+    float max_width = 0;
+    for (auto& text : text_list) {
+        max_width = std::max(max_width, text->getLocalBounds().width);
+        text_height += text->getLocalBounds().height;
+    }
+
+    float next_y = (kScreenHeight - text_height) / 2;
+    for (auto& text : text_list) {
+        text->setOrigin(max_width / 2.f, text->getLocalBounds().height / 2.f);
+        text->setPosition(kScreenWidth / 2.f, next_y);
+        next_y += text->getLocalBounds().height + 14;
+    }
+}
+
 ScoreBoard::ScoreBoard() : high_score_(0) {
     sf::Font* font = &FontHolder::getInstance()->get(Fonts::MAIN);
 
     initilazeText(font, 25, &game_over_text_);
     game_over_text_.setString("Press Enter to Continue");
-    sf::FloatRect text_rect = game_over_text_.getLocalBounds();
-    game_over_text_.setOrigin(text_rect.left + text_rect.width / 2.0f,
-        text_rect.top + text_rect.height / 2.0f);
-    game_over_text_.setPosition(sf::Vector2f(kScreenWidth / 2.f, -text_rect.height + kScreenHeight / 2.f));
 
     initilazeText(font, 20, &high_score_text_);
-    high_score_text_.setOrigin(text_rect.left + text_rect.width / 2.0f,
-        text_rect.top + text_rect.height / 2.0f);
-    high_score_text_.setPosition(kScreenWidth / 2.f, text_rect.height + kScreenHeight / 2.f);
+    high_score_text_.setString("high score : ");
+
+    std::vector<sf::Text*> text_list;
+    text_list.push_back(&game_over_text_);
+    text_list.push_back(&high_score_text_);
+    alignText(text_list);
 
     initilazeText(font, 20, &score_text_);
     score_text_.setPosition(10, 10);
