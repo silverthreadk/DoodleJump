@@ -5,7 +5,8 @@
 #include "player.h"
 #include "config.h"
 
-Platform::Platform(sf::Texture* texture, PLATFORM_TYPE type, const int velocity) : Observer(texture),
+Platform::Platform(sf::Texture* texture, PLATFORM_TYPE type, const int velocity)
+    : Observer(texture),
     type_(type),
     velocity_(velocity) {
 }

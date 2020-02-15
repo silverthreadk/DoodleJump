@@ -20,9 +20,13 @@
 #include "score_board.h"
 #include "life_board.h"
 
-Game::Game() : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
+Game::Game()
+    : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
     state_(PLAYING),
-    landscape_(nullptr),
+    landscape_(new Landscape()),
+    player_(nullptr),
+    score_board_(nullptr),
+    life_board_ (nullptr),
     input_handler_(new InputHandler()),
     difficulty_level_(0) {
     srand(time(0));
@@ -33,7 +37,6 @@ Game::Game() : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
 
     app_.setFramerateLimit(kIntialFrameRate);
 
-    landscape_ = new Landscape();
     player_ = new Player(*this);
     score_board_ = new ScoreBoard();
     life_board_ = new LifeBoard();

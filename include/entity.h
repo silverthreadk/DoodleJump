@@ -11,6 +11,7 @@ class Entity {
  public:
     explicit Entity(sf::Texture* texture);
     Entity(sf::Texture* texture, const int x, const int y);
+    Entity(sf::Texture* texture, const int x, const int y, const int horizontal_padding);
     virtual ~Entity();
     virtual void draw(sf::RenderWindow* app);
     void setHidden(const bool hidden);

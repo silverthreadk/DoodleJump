@@ -6,7 +6,14 @@
 #include "resource_holder.h"
 #include "config.h"
 
-Player::Player(Game& game) : Entity(&TextureHolder::getInstance()->get(Textures::DOODLE)), game_(game) {
+Player::Player(Game& game)
+    : Entity(&TextureHolder::getInstance()->get(Textures::DOODLE), 0, 0, 20),
+    game_(game),
+    velocity_(0),
+    altitude_(0),
+    coin_(0),
+    lives_(kNumberOfLife),
+    score_(0) {
     initialize();
 }
 
@@ -74,7 +81,6 @@ void Player::earnCoin() {
 }
 
 void Player::initialize() {
-    horizontal_padding_ = 20;
     lives_ = kNumberOfLife;
     score_ = 0;
     altitude_ = 0;

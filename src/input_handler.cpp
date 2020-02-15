@@ -3,11 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 
-InputHandler::InputHandler() {
-    key_enter_ = new StartCommand();
-    key_esc_ = new CloseCommand();
-    key_left_ = new LeftCommand();
-    key_right_ = new RightCommand();
+InputHandler::InputHandler() : key_enter_(new StartCommand()),
+    key_esc_(new CloseCommand()),
+    key_left_(new LeftCommand()),
+    key_right_(new RightCommand()) {
 }
 
 InputHandler::~InputHandler() {
