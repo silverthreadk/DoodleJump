@@ -10,6 +10,7 @@
 #include "landscape.h"
 #include "spawner.h"
 #include "platform.h"
+#include "starting_point.h"
 #include "grass.h"
 #include "stone.h"
 #include "cloud.h"
@@ -105,6 +106,9 @@ void Game::loadResource() {
 }
 
 void Game::createPlatform() {
+    SpawnerFor<StartingPoint> starting_point_spawner;
+    landscape_->addObserver(starting_point_spawner.spawnPlatform());
+
     SpawnerFor<Grass> grass_spawner;
     for (int i = 0; i < 10; ++i) {
         landscape_->addObserver(grass_spawner.spawnPlatform());

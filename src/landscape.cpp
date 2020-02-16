@@ -2,8 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "grass.h"
-
 Landscape::Landscape() {
 }
 
@@ -11,7 +9,6 @@ Landscape::~Landscape() {
 }
 
 void Landscape::onInitialize() {
-    Grass::clearTopGrass();
     initialize();
 }
 

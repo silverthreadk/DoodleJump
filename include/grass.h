@@ -10,15 +10,14 @@ class Player;
 class Grass : public Platform {
  public:
     static std::shared_ptr<Platform> create();
-    static void clearTopGrass() { top_ = nullptr; }
     ~Grass();
     void initialize();
     void update(Player* player);
 
- private:
+ protected:
     Grass();
 
-    static Grass* top_;
+    static int top_;
 };
 
 #endif  // GRASS_H_
