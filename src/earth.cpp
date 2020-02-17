@@ -12,7 +12,7 @@ std::shared_ptr<Platform> Earth::create() {
     return platform;
 }
 
-Earth::Earth() : Platform(&TextureHolder::getInstance()->get(Textures::EARTH), PLATFORM_TYPE::EARTH, 0) {
+Earth::Earth() : Platform(&TextureHolder::getInstance()->get(Textures::EARTH), 0) {
 }
 
 Earth::~Earth() {

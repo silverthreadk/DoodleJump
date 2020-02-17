@@ -12,7 +12,7 @@ std::shared_ptr<Platform> Cloud::create() {
     return platform;
 }
 
-Cloud::Cloud() : Platform(&TextureHolder::getInstance()->get(Textures::CLOUD), PLATFORM_TYPE::CLOUD, -10) {
+Cloud::Cloud() : Platform(&TextureHolder::getInstance()->get(Textures::CLOUD), -10) {
 }
 
 Cloud::~Cloud() {

@@ -5,8 +5,6 @@
 
 class Platform : public Observer {
  public:
-    enum PLATFORM_TYPE { GRASS, STONE, CLOUD, EARTH, ICE };
-
     ~Platform();
     void initialize();
     void update(Player* player);
@@ -14,9 +12,8 @@ class Platform : public Observer {
     void fallen(Player* player);
 
  protected:
-    Platform(sf::Texture* texture, PLATFORM_TYPE type, const int velocity);
+    Platform(sf::Texture* texture, const int velocity);
 
-    PLATFORM_TYPE type_;
     const int velocity_;
 };
 

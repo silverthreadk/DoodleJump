@@ -10,7 +10,7 @@ std::shared_ptr<Platform> Stone::create() {
     return platform;
 }
 
-Stone::Stone() : Platform(&TextureHolder::getInstance()->get(Textures::STONE), PLATFORM_TYPE::STONE, -5) {
+Stone::Stone() : Platform(&TextureHolder::getInstance()->get(Textures::STONE), -5) {
 }
 
 Stone::~Stone() {

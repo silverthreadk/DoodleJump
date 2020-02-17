@@ -14,7 +14,7 @@ std::shared_ptr<Platform> Grass::create() {
     return platform;
 }
 
-Grass::Grass() : Platform(&TextureHolder::getInstance()->get(Textures::GRASS), PLATFORM_TYPE::GRASS, -10) {
+Grass::Grass() : Platform(&TextureHolder::getInstance()->get(Textures::GRASS), -10) {
 }
 
 Grass::~Grass() {

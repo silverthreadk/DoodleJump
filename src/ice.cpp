@@ -11,7 +11,7 @@ std::shared_ptr<Platform> Ice::create() {
     return platform;
 }
 
-Ice::Ice() : Platform(&TextureHolder::getInstance()->get(Textures::ICE), PLATFORM_TYPE::ICE, -10), direction(1) {
+Ice::Ice() : Platform(&TextureHolder::getInstance()->get(Textures::ICE), -10), direction(1) {
 }
 
 Ice::~Ice() {
