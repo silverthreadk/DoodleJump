@@ -6,10 +6,10 @@
 #include "resource_holder.h"
 #include "player.h"
 
-std::shared_ptr<Platform> Earth::create() {
-    std::shared_ptr<Platform> platform(new Earth);
-    platform->initialize();
-    return platform;
+std::shared_ptr<Earth> Earth::create() {
+    std::shared_ptr<Earth> earth(new Earth);
+    earth->initialize();
+    return earth;
 }
 
 Earth::Earth() : Platform(&TextureHolder::getInstance()->get(Textures::EARTH), 0) {

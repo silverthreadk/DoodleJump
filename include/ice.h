@@ -9,7 +9,7 @@ class Player;
 
 class Ice : public Platform {
  public:
-    static std::shared_ptr<Platform> create();
+    static std::shared_ptr<Ice> create();
     ~Ice();
     void move(Player* player);
 

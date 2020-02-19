@@ -8,10 +8,10 @@
 
 int Grass::top_ = kScreenHeight;
 
-std::shared_ptr<Platform> Grass::create() {
-    std::shared_ptr<Platform> platform(new Grass);
-    platform->initialize();
-    return platform;
+std::shared_ptr<Grass> Grass::create() {
+    std::shared_ptr<Grass> grass(new Grass);
+    grass->initialize();
+    return grass;
 }
 
 Grass::Grass() : Platform(&TextureHolder::getInstance()->get(Textures::GRASS), -10) {

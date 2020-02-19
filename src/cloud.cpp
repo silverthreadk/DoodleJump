@@ -6,10 +6,10 @@
 #include "resource_holder.h"
 #include "player.h"
 
-std::shared_ptr<Platform> Cloud::create() {
-    std::shared_ptr<Platform> platform(new Cloud);
-    platform->initialize();
-    return platform;
+std::shared_ptr<Cloud> Cloud::create() {
+    std::shared_ptr<Cloud> cloud(new Cloud);
+    cloud->initialize();
+    return cloud;
 }
 
 Cloud::Cloud() : Platform(&TextureHolder::getInstance()->get(Textures::CLOUD), -10) {

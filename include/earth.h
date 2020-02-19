@@ -9,7 +9,7 @@ class Player;
 
 class Earth : public Platform {
  public:
-    static std::shared_ptr<Platform> create();
+    static std::shared_ptr<Earth> create();
     ~Earth();
     void fallen(Player* player);
 

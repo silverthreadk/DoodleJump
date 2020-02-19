@@ -5,10 +5,10 @@
 #include "resource_holder.h"
 #include "player.h"
 
-std::shared_ptr<Platform> Ice::create() {
-    std::shared_ptr<Platform> platform(new Ice);
-    platform->initialize();
-    return platform;
+std::shared_ptr<Ice> Ice::create() {
+    std::shared_ptr<Ice> ice(new Ice);
+    ice->initialize();
+    return ice;
 }
 
 Ice::Ice() : Platform(&TextureHolder::getInstance()->get(Textures::ICE), -10), direction(1) {

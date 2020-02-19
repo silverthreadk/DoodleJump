@@ -4,10 +4,10 @@
 
 #include "config.h"
 
-std::shared_ptr<Platform> StartingPoint::create() {
-    std::shared_ptr<Platform> platform(new StartingPoint);
-    platform->initialize();
-    return platform;
+std::shared_ptr<StartingPoint> StartingPoint::create() {
+    std::shared_ptr<StartingPoint> starting_point(new StartingPoint);
+    starting_point->initialize();
+    return starting_point;
 }
 
 StartingPoint::StartingPoint() : Grass() {

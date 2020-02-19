@@ -107,28 +107,28 @@ void Game::loadResource() {
 
 void Game::createPlatform() {
     SpawnerFor<StartingPoint> starting_point_spawner;
-    landscape_->addObserver(starting_point_spawner.spawnPlatform());
+    landscape_->addObserver(starting_point_spawner.spawnEntity());
 
     SpawnerFor<Grass> grass_spawner;
     for (int i = 0; i < 10; ++i) {
-        landscape_->addObserver(grass_spawner.spawnPlatform());
+        landscape_->addObserver(grass_spawner.spawnEntity());
     }
 
     SpawnerFor<Earth> earth_spawner;
     for (int i = 0; i < 3; ++i) {
-        landscape_->addObserver(earth_spawner.spawnPlatform());
+        landscape_->addObserver(earth_spawner.spawnEntity());
     }
 
     SpawnerFor<Cloud> cloud_spawner;
     for (int i = 0; i < 3; ++i) {
-        landscape_->addObserver(cloud_spawner.spawnPlatform());
+        landscape_->addObserver(cloud_spawner.spawnEntity());
     }
 
     SpawnerFor<Stone> stone_spawner;
-    landscape_->addObserver(stone_spawner.spawnPlatform());
+    landscape_->addObserver(stone_spawner.spawnEntity());
 
     SpawnerFor<Ice> ice_spawner;
-    landscape_->addObserver(ice_spawner.spawnPlatform());
+    landscape_->addObserver(ice_spawner.spawnEntity());
 }
 
 void Game::createCoin() {

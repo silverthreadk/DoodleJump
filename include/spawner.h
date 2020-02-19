@@ -3,19 +3,19 @@
 
 #include <memory>
 
-#include "platform.h"
+#include "observer.h"
 
 class Spawner {
  public:
     Spawner() {}
     virtual ~Spawner() {}
-    virtual std::shared_ptr<Platform> spawnPlatform() = 0;
+    virtual std::shared_ptr<Observer> spawnEntity() = 0;
 };
 
 template <class T>
 class SpawnerFor : public Spawner {
  public:
-    std::shared_ptr<Platform> spawnPlatform() { return T::create(); }
+    std::shared_ptr<Observer> spawnEntity() { return T::create(); }
 };
 
 #endif  // SPAWNER_H_

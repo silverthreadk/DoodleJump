@@ -9,7 +9,7 @@ class Player;
 
 class Grass : public Platform {
  public:
-    static std::shared_ptr<Platform> create();
+    static std::shared_ptr<Grass> create();
     ~Grass();
     void initialize();
     void update(Player* player);
