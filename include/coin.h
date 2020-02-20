@@ -1,10 +1,13 @@
 #ifndef COIN_H_
 #define COIN_H_
 
+#include <memory>
+
 #include "observer.h"
 
 class Coin : public Observer {
  public:
+    static std::shared_ptr<Coin> create();
     Coin();
     ~Coin();
     void initialize();

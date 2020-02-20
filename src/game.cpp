@@ -132,8 +132,9 @@ void Game::createPlatform() {
 }
 
 void Game::createCoin() {
+    SpawnerFor<Coin> coin_spawner;
     for (int i = 0; i < 5; ++i) {
-        landscape_->addObserver(std::make_shared<Coin>());
+        landscape_->addObserver(coin_spawner.spawnEntity());
     }
 }
 
