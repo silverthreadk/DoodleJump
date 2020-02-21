@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
+class Background;
 class Landscape;
 class Player;
 class ScoreBoard;
@@ -31,8 +32,8 @@ class Game {
     void adjustDifficultyLevel();
 
     sf::RenderWindow app_;
-    sf::Sprite background_sprite_;
     GameState state_;
+    Background* background_;
     Landscape* landscape_;
     Player* player_;
     ScoreBoard* score_board_;

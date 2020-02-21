@@ -7,6 +7,7 @@
 #include "config.h"
 #include "input_handler.h"
 #include "command.h"
+#include "background.h"
 #include "landscape.h"
 #include "spawner.h"
 #include "platform.h"
@@ -24,6 +25,7 @@
 Game::Game()
     : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
     state_(PLAYING),
+    background_(nullptr),
     landscape_(new Landscape()),
     player_(nullptr),
     score_board_(nullptr),
@@ -34,10 +36,9 @@ Game::Game()
 
     loadResource();
 
-    background_sprite_.setTexture(TextureHolder::getInstance()->get(Textures::BACKGROUND));
-
     app_.setFramerateLimit(kIntialFrameRate);
 
+    background_ = new Background();
     player_ = new Player(*this);
     score_board_ = new ScoreBoard();
     life_board_ = new LifeBoard();
@@ -162,7 +163,7 @@ void Game::layout() {
 }
 
 void Game::draw() {
-    app_.draw(background_sprite_);
+    background_->draw(&app_);
     landscape_->onDraw(&app_);
     player_->draw(&app_);
     score_board_->draw(&app_);
