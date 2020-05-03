@@ -9,7 +9,7 @@ class Player;
 
 class Cloud : public Platform {
  public:
-    static std::shared_ptr<Cloud> create();
+    static std::unique_ptr<Cloud> create();
     ~Cloud();
     void fallen(Player* player);
 

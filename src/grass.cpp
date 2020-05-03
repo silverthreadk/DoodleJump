@@ -8,8 +8,8 @@
 
 int Grass::top_ = kScreenHeight;
 
-std::shared_ptr<Grass> Grass::create() {
-    std::shared_ptr<Grass> grass(new Grass);
+std::unique_ptr<Grass> Grass::create() {
+    std::unique_ptr<Grass> grass(new Grass);
     grass->initialize();
     return grass;
 }

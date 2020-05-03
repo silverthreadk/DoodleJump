@@ -7,7 +7,7 @@
 
 class Stone : public Platform {
  public:
-    static std::shared_ptr<Stone> create();
+    static std::unique_ptr<Stone> create();
     ~Stone();
 
  private:

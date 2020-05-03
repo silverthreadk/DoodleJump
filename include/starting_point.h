@@ -5,7 +5,7 @@
 
 class StartingPoint : public Grass {
  public:
-    static std::shared_ptr<StartingPoint> create();
+    static std::unique_ptr<StartingPoint> create();
     ~StartingPoint();
     void initialize();
     void update(Player* player) {}

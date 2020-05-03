@@ -17,7 +17,7 @@ class LifeBoard {
     void draw(sf::RenderWindow* app);
 
  private:
-    std::vector<std::shared_ptr<Life> > lives_;
+    std::vector<std::unique_ptr<Life> > lives_;
     int life_index_;
 };
 

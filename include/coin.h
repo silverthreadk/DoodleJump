@@ -7,7 +7,7 @@
 
 class Coin : public Observer {
  public:
-    static std::shared_ptr<Coin> create();
+    static std::unique_ptr<Coin> create();
     Coin();
     ~Coin();
     void initialize();

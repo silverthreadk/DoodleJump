@@ -4,8 +4,8 @@
 
 #include "config.h"
 
-std::shared_ptr<StartingPoint> StartingPoint::create() {
-    std::shared_ptr<StartingPoint> starting_point(new StartingPoint);
+std::unique_ptr<StartingPoint> StartingPoint::create() {
+    std::unique_ptr<StartingPoint> starting_point(new StartingPoint);
     starting_point->initialize();
     return starting_point;
 }

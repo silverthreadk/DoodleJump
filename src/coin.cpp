@@ -6,8 +6,8 @@
 #include "config.h"
 #include "resource_holder.h"
 
-std::shared_ptr<Coin> Coin::create() {
-    std::shared_ptr<Coin> coin(new Coin);
+std::unique_ptr<Coin> Coin::create() {
+    std::unique_ptr<Coin> coin(new Coin);
     coin->initialize();
     return coin;
 }

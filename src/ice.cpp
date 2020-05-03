@@ -5,8 +5,8 @@
 #include "resource_holder.h"
 #include "player.h"
 
-std::shared_ptr<Ice> Ice::create() {
-    std::shared_ptr<Ice> ice(new Ice);
+std::unique_ptr<Ice> Ice::create() {
+    std::unique_ptr<Ice> ice(new Ice);
     ice->initialize();
     return ice;
 }

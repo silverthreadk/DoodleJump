@@ -4,7 +4,8 @@
 #include <list>
 #include <memory>
 
-class Observer;
+#include "observer.h"
+
 class Player;
 
 namespace sf {
@@ -15,8 +16,7 @@ class Subject {
  public:
     Subject() {}
     virtual ~Subject() {}
-    void addObserver(std::shared_ptr<Observer> observer);
-    void removeObserver(std::shared_ptr<Observer> observer);
+    void addObserver(std::unique_ptr<Observer> observer);
 
  protected:
     void initialize();
@@ -26,7 +26,7 @@ class Subject {
     void draw(sf::RenderWindow* app);
 
  private:
-    std::list<std::shared_ptr<Observer> > observers_;
+    std::list<std::unique_ptr<Observer> > observers_;
 };
 
 #endif  // SUBJECT_H_

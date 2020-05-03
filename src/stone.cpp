@@ -4,8 +4,8 @@
 
 #include "resource_holder.h"
 
-std::shared_ptr<Stone> Stone::create() {
-    std::shared_ptr<Stone> stone(new Stone);
+std::unique_ptr<Stone> Stone::create() {
+    std::unique_ptr<Stone> stone(new Stone);
     stone->initialize();
     return stone;
 }

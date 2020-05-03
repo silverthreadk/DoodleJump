@@ -6,8 +6,8 @@
 #include "resource_holder.h"
 #include "player.h"
 
-std::shared_ptr<Cloud> Cloud::create() {
-    std::shared_ptr<Cloud> cloud(new Cloud);
+std::unique_ptr<Cloud> Cloud::create() {
+    std::unique_ptr<Cloud> cloud(new Cloud);
     cloud->initialize();
     return cloud;
 }

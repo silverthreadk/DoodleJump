@@ -9,13 +9,13 @@ class Spawner {
  public:
     Spawner() {}
     virtual ~Spawner() {}
-    virtual std::shared_ptr<Observer> spawnEntity() = 0;
+    virtual std::unique_ptr<Observer> spawnEntity() = 0;
 };
 
 template <class T>
 class SpawnerFor : public Spawner {
  public:
-    std::shared_ptr<Observer> spawnEntity() { return T::create(); }
+    std::unique_ptr<Observer> spawnEntity() { return T::create(); }
 };
 
 #endif  // SPAWNER_H_

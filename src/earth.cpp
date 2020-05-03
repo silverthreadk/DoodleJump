@@ -6,8 +6,8 @@
 #include "resource_holder.h"
 #include "player.h"
 
-std::shared_ptr<Earth> Earth::create() {
-    std::shared_ptr<Earth> earth(new Earth);
+std::unique_ptr<Earth> Earth::create() {
+    std::unique_ptr<Earth> earth (new Earth);
     earth->initialize();
     return earth;
 }
