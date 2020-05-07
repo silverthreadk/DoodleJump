@@ -1,8 +1,11 @@
 #include "life_board.h"
 
-#include <life.h>
-#include <resource_holder.h>
-#include <config.h>
+#include <SFML/Graphics.hpp>
+
+#include "config.h"
+#include "life.h"
+#include "resource_holder.h"
+
 
 LifeBoard::LifeBoard() : life_index_(kNumberOfLife - 1) {
     int x = kScreenWidth, y = 10;

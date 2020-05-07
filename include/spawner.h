@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "observer.h"
+class Observer;
 
 class Spawner {
  public:

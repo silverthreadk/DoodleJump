@@ -4,7 +4,9 @@
 #include <memory>
 #include <vector>
 
-#include <SFML/Graphics.hpp>
+namespace sf {
+    class RenderWindow;
+}
 
 class Life;
 

@@ -4,8 +4,7 @@
 #include <list>
 #include <memory>
 
-#include "observer.h"
-
+class Observer;
 class Player;
 
 namespace sf {
@@ -14,8 +13,8 @@ namespace sf {
 
 class Subject {
  public:
-    Subject() {}
-    virtual ~Subject() {}
+    Subject();
+    virtual ~Subject();
     void addObserver(std::unique_ptr<Observer> observer);
 
  protected:

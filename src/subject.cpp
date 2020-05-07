@@ -2,7 +2,14 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "observer.h"
 #include "player.h"
+
+Subject::Subject() {
+}
+
+Subject::~Subject() {
+}
 
 void Subject::addObserver(std::unique_ptr<Observer> observer) {
     observers_.push_back(std::move(observer));
