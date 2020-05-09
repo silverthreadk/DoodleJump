@@ -1,6 +1,7 @@
 #ifndef GAME_H_
 #define GAME_H_
 
+#include <memory>
 #include <SFML/Graphics.hpp>
 
 class Background;
@@ -33,12 +34,12 @@ class Game {
 
     sf::RenderWindow app_;
     GameState state_;
-    Background* background_;
-    Landscape* landscape_;
-    Player* player_;
-    ScoreBoard* score_board_;
-    LifeBoard* life_board_;
-    InputHandler* input_handler_;
+    std::unique_ptr<Background> background_;
+    std::unique_ptr<Landscape> landscape_;
+    std::unique_ptr<Player> player_;
+    std::unique_ptr<ScoreBoard> score_board_;
+    std::unique_ptr<LifeBoard> life_board_;
+    std::unique_ptr<InputHandler> input_handler_;
     int difficulty_level_;
 };
 

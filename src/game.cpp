@@ -26,11 +26,11 @@ Game::Game()
     : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
     state_(PLAYING),
     background_(nullptr),
-    landscape_(new Landscape()),
+    landscape_(std::unique_ptr<Landscape>(new Landscape())),
     player_(nullptr),
     score_board_(nullptr),
     life_board_ (nullptr),
-    input_handler_(new InputHandler()),
+    input_handler_(std::unique_ptr<InputHandler>(new InputHandler())),
     difficulty_level_(0) {
     srand(time(0));
 
@@ -38,21 +38,16 @@ Game::Game()
 
     app_.setFramerateLimit(kIntialFrameRate);
 
-    background_ = new Background();
-    player_ = new Player(*this);
-    score_board_ = new ScoreBoard();
-    life_board_ = new LifeBoard();
+    background_ = std::unique_ptr<Background>(new Background());
+    player_ = std::unique_ptr<Player>(new Player(*this));
+    score_board_ = std::unique_ptr<ScoreBoard>(new ScoreBoard());
+    life_board_ = std::unique_ptr<LifeBoard>(new LifeBoard());
 
     createPlatform();
     createCoin();
 }
 
 Game::~Game() {
-    delete landscape_;
-    delete player_;
-    delete score_board_;
-    delete life_board_;
-    delete input_handler_;
 }
 
 void Game::initialize() {
@@ -143,7 +138,7 @@ void Game::handleInput() {
     Command* command = input_handler_->handleInput();
     if (!command) return;
 
-    command->execute(player_);
+    command->execute(player_.get());
 }
 
 void Game::layout() {
@@ -155,11 +150,11 @@ void Game::layout() {
     } else if (player_->isHighestPoint()) {
         player_->keepJumpHeight();
 
-        landscape_->onUpdate(player_);
+        landscape_->onUpdate(player_.get());
     }
-    landscape_->onMove(player_);
-    landscape_->onFallen(player_);
-    score_board_->update(player_);
+    landscape_->onMove(player_.get());
+    landscape_->onFallen(player_.get());
+    score_board_->update(player_.get());
 }
 
 void Game::draw() {
