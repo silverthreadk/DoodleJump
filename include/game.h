@@ -4,6 +4,7 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 
+class ResourceManager;
 class Background;
 class Landscape;
 class Player;
@@ -24,7 +25,6 @@ class Game {
     bool isPlaying() const { return state_ == PLAYING; }
 
  private:
-    void loadResource();
     void createPlatform();
     void createCoin();
     void handleInput();
@@ -34,6 +34,7 @@ class Game {
 
     sf::RenderWindow app_;
     GameState state_;
+    std::unique_ptr<ResourceManager> resource_manager_;
     std::unique_ptr<Background> background_;
     std::unique_ptr<Landscape> landscape_;
     std::unique_ptr<Player> player_;

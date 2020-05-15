@@ -3,8 +3,8 @@
 #include <time.h>
 #include <string>
 
-#include "resource_holder.h"
 #include "config.h"
+#include "resource_manager.h"
 #include "input_handler.h"
 #include "command.h"
 #include "background.h"
@@ -25,23 +25,17 @@
 Game::Game()
     : app_(sf::VideoMode(kScreenWidth, kScreenHeight), "Doodle Game!"),
     state_(PLAYING),
-    background_(nullptr),
+    resource_manager_(std::unique_ptr<ResourceManager>(new ResourceManager())),
+    background_(std::unique_ptr<Background>(new Background())),
     landscape_(std::unique_ptr<Landscape>(new Landscape())),
-    player_(nullptr),
-    score_board_(nullptr),
-    life_board_ (nullptr),
+    player_(std::unique_ptr<Player>(new Player(*this))),
+    score_board_(std::unique_ptr<ScoreBoard>(new ScoreBoard())),
+    life_board_ (std::unique_ptr<LifeBoard>(new LifeBoard())),
     input_handler_(std::unique_ptr<InputHandler>(new InputHandler())),
     difficulty_level_(0) {
     srand(time(0));
 
-    loadResource();
-
     app_.setFramerateLimit(kIntialFrameRate);
-
-    background_ = std::unique_ptr<Background>(new Background());
-    player_ = std::unique_ptr<Player>(new Player(*this));
-    score_board_ = std::unique_ptr<ScoreBoard>(new ScoreBoard());
-    life_board_ = std::unique_ptr<LifeBoard>(new LifeBoard());
 
     createPlatform();
     createCoin();
@@ -84,21 +78,6 @@ void Game::run() {
 void Game::close() {
     score_board_->save();
     app_.close();
-}
-
-void Game::loadResource() {
-    TextureHolder* texture_holder = TextureHolder::getInstance();
-    texture_holder->load(Textures::BACKGROUND, RESOURCE_PATH + "images/background.png");
-    texture_holder->load(Textures::GRASS, RESOURCE_PATH + "images/grass.png");
-    texture_holder->load(Textures::STONE, RESOURCE_PATH + "images/stone.png");
-    texture_holder->load(Textures::CLOUD, RESOURCE_PATH + "images/cloud.png");
-    texture_holder->load(Textures::EARTH, RESOURCE_PATH + "images/earth.png");
-    texture_holder->load(Textures::ICE, RESOURCE_PATH + "images/ice.png");
-    texture_holder->load(Textures::COIN, RESOURCE_PATH + "images/coin.png");
-    texture_holder->load(Textures::DOODLE, RESOURCE_PATH + "images/doodle.png");
-
-    FontHolder* font_holder = FontHolder::getInstance();
-    font_holder->load(Fonts::MAIN, RESOURCE_PATH + "fonts/nanumgothic.ttf");
 }
 
 void Game::createPlatform() {
