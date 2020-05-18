@@ -1,9 +1,9 @@
-#include "platform.h"
+#include "entity/platform.h"
 
 #include <SFML/Graphics.hpp>
 
-#include "player.h"
 #include "config.h"
+#include "entity/player.h"
 
 Platform::Platform(sf::Texture* texture, const int velocity)
     : Observer(texture),

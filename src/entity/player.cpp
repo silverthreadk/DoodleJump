@@ -1,4 +1,4 @@
-#include "player.h"
+#include "entity/player.h"
 
 #include <SFML/Graphics.hpp>
 

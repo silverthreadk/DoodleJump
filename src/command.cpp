@@ -1,6 +1,6 @@
 #include "command.h"
 
-#include "player.h"
+#include "entity/player.h"
 
 void StartCommand::execute(Player* player) {
     player->restart();

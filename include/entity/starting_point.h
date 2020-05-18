@@ -1,7 +1,7 @@
 #ifndef STARTING_POINT_H_
 #define STARTING_POINT_H_
 
-#include "grass.h"
+#include "entity/grass.h"
 
 class StartingPoint : public Grass {
  public:

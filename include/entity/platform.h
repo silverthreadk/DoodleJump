@@ -1,7 +1,7 @@
 #ifndef PLATFORM_H_
 #define PLATFORM_H_
 
-#include "observer.h"
+#include "entity/observer.h"
 
 class Platform : public Observer {
  public:

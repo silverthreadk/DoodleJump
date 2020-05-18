@@ -2,8 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "observer.h"
-#include "player.h"
+#include "entity/observer.h"
+#include "entity/player.h"
 
 Subject::Subject() {
 }

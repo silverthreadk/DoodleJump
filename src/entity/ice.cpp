@@ -1,9 +1,9 @@
-#include "ice.h"
+#include "entity/ice.h"
 
 #include <SFML/Graphics.hpp>
 
 #include "resource_holder.h"
-#include "player.h"
+#include "entity/player.h"
 
 std::unique_ptr<Ice> Ice::create() {
     std::unique_ptr<Ice> ice(new Ice);

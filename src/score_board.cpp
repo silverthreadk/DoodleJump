@@ -6,7 +6,7 @@
 
 #include "config.h"
 #include "resource_holder.h"
-#include "player.h"
+#include "entity/player.h"
 
 static void initilazeText(sf::Font* font, int font_size, sf::Text* text) {
     text->setFont(*font);

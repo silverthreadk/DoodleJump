@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "observer.h"
+#include "entity/observer.h"
 
 class Coin : public Observer {
  public:

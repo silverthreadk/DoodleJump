@@ -1,10 +1,10 @@
-#include "earth.h"
+#include "entity/earth.h"
 
 #include <SFML/Graphics.hpp>
 
 #include "config.h"
 #include "resource_holder.h"
-#include "player.h"
+#include "entity/player.h"
 
 std::unique_ptr<Earth> Earth::create() {
     std::unique_ptr<Earth> earth (new Earth);

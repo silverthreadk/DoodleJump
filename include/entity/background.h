@@ -1,7 +1,7 @@
 #ifndef BACKGROUND_H_
 #define BACKGROUND_H_
 
-#include "entity.h"
+#include "entity/entity.h"
 
 class Background : public Entity {
  public:

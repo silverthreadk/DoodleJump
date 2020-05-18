@@ -1,7 +1,7 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-#include "entity.h"
+#include "entity/entity.h"
 
 class Game;
 

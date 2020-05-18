@@ -31,8 +31,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR})
 set(MAIN_CPP_FILE ${SRC_DIR}/main.cpp)
 
 aux_source_directory(${SRC_DIR} SRC_FILES)
+aux_source_directory(${SRC_DIR}/entity SRC_FILES)
 
 list(REMOVE_ITEM SRC_FILES ${MAIN_CPP_FILE})
+
+file(GLOB ENTITY_SRCS ${SRC_DIR}/entity/*.cpp)
+file(GLOB ENTITY_HEADER ${INCLUDE_DIR}/entity/*.h)
+source_group("Source Files\\entity" FILES ${ENTITY_SRCS})
+source_group("Header Files\\entity" FILES ${ENTITY_HEADER})
 
 configure_file (
   "${PROJECT_SOURCE_DIR}/config.h.in"
@@ -44,7 +50,7 @@ include_directories(${PROJECT_BINARY_DIR} ${INCLUDE_DIR})
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-file(GLOB HEADER_FILES "${INCLUDE_DIR}/*.h")
+file(GLOB HEADER_FILES "${INCLUDE_DIR}/*.h" ${ENTITY_HEADER})
 add_library(${PROG_LIB_NAME} STATIC ${SRC_FILES} ${HEADER_FILES})
 
 link_directories(${LIB_DIR})

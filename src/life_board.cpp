@@ -3,8 +3,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "config.h"
-#include "life.h"
 #include "resource_holder.h"
+#include "entity/life.h"
 
 
 LifeBoard::LifeBoard() : life_index_(kNumberOfLife - 1) {

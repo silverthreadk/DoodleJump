@@ -1,4 +1,4 @@
-#include "life.h"
+#include "entity/life.h"
 
 #include <SFML/Graphics.hpp>
 

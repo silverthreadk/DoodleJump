@@ -1,10 +1,10 @@
-#include "coin.h"
+#include "entity/coin.h"
 
 #include <SFML/Graphics.hpp>
 
-#include "player.h"
 #include "config.h"
 #include "resource_holder.h"
+#include "entity/player.h"
 
 std::unique_ptr<Coin> Coin::create() {
     std::unique_ptr<Coin> coin(new Coin);

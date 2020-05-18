@@ -1,7 +1,7 @@
 #ifndef LIFE_H_
 #define LIFE_H_
 
-#include "entity.h"
+#include "entity/entity.h"
 
 class Life : public Entity {
  public:

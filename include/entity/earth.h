@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "platform.h"
+#include "entity/platform.h"
 
 class Player;
 

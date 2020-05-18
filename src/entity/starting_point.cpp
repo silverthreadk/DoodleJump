@@ -1,4 +1,4 @@
-#include "starting_point.h"
+#include "entity/starting_point.h"
 
 #include <SFML/Graphics.hpp>
 

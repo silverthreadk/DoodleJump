@@ -1,7 +1,7 @@
 #ifndef OBSERVER_H_
 #define OBSERVER_H_
 
-#include "entity.h"
+#include "entity/entity.h"
 
 class Player;
 

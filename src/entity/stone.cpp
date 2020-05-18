@@ -1,4 +1,4 @@
-#include "stone.h"
+#include "entity/stone.h"
 
 #include <SFML/Graphics.hpp>
 

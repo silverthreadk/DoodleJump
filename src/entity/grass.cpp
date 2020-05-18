@@ -1,10 +1,10 @@
-#include "grass.h"
+#include "entity/grass.h"
 
 #include <SFML/Graphics.hpp>
 
 #include "config.h"
 #include "resource_holder.h"
-#include "player.h"
+#include "entity/player.h"
 
 int Grass::top_ = kScreenHeight;
 
