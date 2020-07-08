@@ -25,7 +25,7 @@ void Coin::initialize() {
 }
 
 void Coin::update(Player* player) {
-    y_ = y_ - player->getVelocity();
+    y_ -= player->getVelocity();
     if (y_ > kScreenHeight) {
         y_ = std::min(-getHeight(), -rand() % kScreenHeight);
         x_ = rand() % getMaxX();

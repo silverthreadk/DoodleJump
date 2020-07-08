@@ -27,7 +27,7 @@ void Grass::initialize() {
 }
 
 void Grass::update(Player* player) {
-    y_ = y_ - player->getVelocity();
+    y_ -= player->getVelocity();
     if (y_ > kScreenHeight) {
         x_ = rand() % getMaxX();
         y_ = top_ - std::min(kJumpHeight, rand() % 30 + (player->getScore() / 1000) * 10);

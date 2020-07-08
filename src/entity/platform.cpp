@@ -19,7 +19,7 @@ void Platform::initialize() {
 }
 
 void Platform::update(Player* player) {
-    y_ = y_ - player->getVelocity();
+    y_ -= player->getVelocity();
     if (y_ > kScreenHeight) {
         y_ = std::min(-getHeight(), -rand() % kScreenHeight);
         x_ = rand() % getMaxX();
